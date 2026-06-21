@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HealthLine AI — Workshop Lab</title>
+  <meta name="description" content="LINE Bot และ AI Health Assistant สำหรับ workshop สาธารณสุข">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600&family=Pridi:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+  <div class="grain"></div>
+  <main>
+    <section class="hero">
+      <nav><span class="mark">HL<span>+</span></span><span class="edition">CMU WORKSHOP · 2569</span></nav>
+      <div class="hero-copy">
+        <p class="eyebrow">PUBLIC HEALTH × CONVERSATIONAL AI</p>
+        <h1>สุขภาพที่เข้าใจง่าย<br><em>เริ่มจากคำถามหนึ่งข้อ</em></h1>
+        <p class="lede">ห้องทดลอง LINE Bot ที่รวม FAQ, Flex Message, สถิติ และ AI แบบ RAG ไว้ในประสบการณ์เดียว</p>
+        <div class="chips"><span>LINE Webhook</span><span>Flask</span><span>OpenAI</span><span>RAG</span></div>
+      </div>
+      <div class="pulse" aria-hidden="true"><i></i><i></i><i></i><b>1669</b></div>
+    </section>
+
+    <section class="lab" id="lab">
+      <div class="lab-note">
+        <span>LIVE LAB / 01</span>
+        <h2>ลองคุยกับบอต</h2>
+        <p>ทำงานได้ทันทีด้วยฐานความรู้ในเครื่อง และสลับเป็น AI + RAG อัตโนมัติเมื่อใส่ API key</p>
+        <div class="quick">
+          <button data-prompt="ไข้หวัดใหญ่ป้องกันอย่างไร">ไข้หวัดใหญ่</button>
+          <button data-prompt="สถิติ">ดูสถิติ</button>
+          <button data-prompt="ฝุ่น PM2.5 ป้องกันอย่างไร">PM2.5</button>
+        </div>
+      </div>
+      <div class="phone" aria-label="โปรแกรมจำลองแชต LINE">
+        <div class="phone-top"><span class="avatar">+</span><div><strong>HealthLine AI</strong><small>พร้อมให้ข้อมูลสุขภาพ</small></div><span class="online"></span></div>
+        <div class="messages" id="messages" aria-live="polite">
+          <div class="message bot"><span>สวัสดีค่ะ ฉันคือ HealthLine AI 👋<br>ลองถามเรื่องสุขภาพทั่วไป หรือกดหัวข้อด้านล่างได้เลย</span><small>BOT · NOW</small></div>
+        </div>
+        <form id="chat-form">
+          <label class="sr-only" for="message">พิมพ์คำถามสุขภาพ</label>
+          <input id="message" maxlength="1500" autocomplete="off" placeholder="พิมพ์คำถามสุขภาพ…" required>
+          <button type="submit" aria-label="ส่งข้อความ">↑</button>
+        </form>
+      </div>
+    </section>
+
+    <footer><span>ข้อมูลเพื่อสุขศึกษา ไม่แทนคำแนะนำจากแพทย์</span><strong>เหตุฉุกเฉิน โทร 1669</strong></footer>
+  </main>
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</body>
+</html>
