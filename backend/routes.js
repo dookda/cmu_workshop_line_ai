@@ -1,7 +1,7 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
-import { FAQRepository, StatsRepository, HealthAssistant, LineService, validSignature } from './core.js';
+import { FAQRepository, StatsRepository, ProvinceStatsRepository, HealthAssistant, LineService, validSignature } from './core.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -19,12 +19,16 @@ function services() {
     if (!_services) {
         const repository = new FAQRepository(path.join(__dirname, 'data/health_faq.json'));
         const statsRepository = new StatsRepository(path.join(__dirname, 'data/health_stats.json'));
+        const provinceStats = new ProvinceStatsRepository(path.join(__dirname, 'data/province_stats.json'));
         const assistant = new HealthAssistant(repository, statsRepository, {
             apiKey: OPENAI_API_KEY,
             model: OPENAI_MODEL,
             topK: parseInt(RAG_TOP_K, 10),
         });
-        _services = { line: new LineService(LINE_CHANNEL_ACCESS_TOKEN, assistant, repository, statsRepository) };
+        _services = {
+            line: new LineService(LINE_CHANNEL_ACCESS_TOKEN, assistant, repository, statsRepository),
+            provinceStats,
+        };
     }
     return _services;
 }
@@ -33,6 +37,26 @@ const router = express.Router();
 
 router.get('/health', (_req, res) => {
     res.json({ status: 'ok', service: 'healthline-ai' });
+});
+
+router.get('/api/provinces', (req, res) => {
+    const { province, field, min, max } = req.query;
+    const { provinceStats } = services();
+    if (province) {
+        const match = provinceStats.findByProvince(String(province));
+        return match ? res.json(match) : res.status(404).json({ error: 'province not found' });
+    }
+    res.json(provinceStats.query({
+        field,
+        min: min !== undefined ? Number(min) : undefined,
+        max: max !== undefined ? Number(max) : undefined,
+    }));
+});
+
+router.get('/api/provinces/:province', (req, res) => {
+    const { provinceStats } = services();
+    const match = provinceStats.findByProvince(req.params.province);
+    return match ? res.json(match) : res.status(404).json({ error: 'province not found' });
 });
 
 router.post('/api/chat', express.json(), async (req, res) => {

@@ -71,6 +71,29 @@ export class FAQRepository {
 }
 
 // ---------------------------------------------------------------------------
+// Province statistics (converted from assets/stat.xlsx)
+// ---------------------------------------------------------------------------
+const PROVINCE_RATE_FIELDS = ['patient', 'patient_rate', 'dead', 'dead_rate', 'cfr'];
+
+export class ProvinceStatsRepository {
+    constructor(path) {
+        this.items = JSON.parse(readFileSync(path, 'utf-8'));
+    }
+
+    findByProvince(name) {
+        const normalized = name.trim().toLowerCase();
+        return this.items.find(item => item.province.toLowerCase().includes(normalized)) || null;
+    }
+
+    query({ field = 'patient_rate', min, max } = {}) {
+        const rateField = PROVINCE_RATE_FIELDS.includes(field) ? field : 'patient_rate';
+        return this.items
+            .filter(item => (min === undefined || item[rateField] >= min) && (max === undefined || item[rateField] <= max))
+            .sort((a, b) => b[rateField] - a[rateField]);
+    }
+}
+
+// ---------------------------------------------------------------------------
 // Stats / chart-on-demand
 // ---------------------------------------------------------------------------
 const CHART_PATTERNS = ['กราฟ', 'แผนภูมิ', 'ชาร์ต', 'สถิติ', 'chart', 'graph', 'stats'];

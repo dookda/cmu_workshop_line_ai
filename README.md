@@ -55,6 +55,20 @@ RAG ในโปรเจกต์นี้ตั้งใจใช้ lexical r
 
 Endpoints: `GET /health` สำหรับ health check, `POST /api/chat` สำหรับ simulator, `POST /webhook` สำหรับ LINE
 
+## REST API สถิติรายจังหวัด
+
+ข้อมูลแปลงมาจาก `assets/stat.xlsx` → `backend/data/province_stats.json` (province, patient, patient_rate, dead, dead_rate, cfr) ด้วย:
+
+```bash
+node backend/scripts/convert_province_stats.js
+```
+
+| Endpoint | คำอธิบาย |
+|---|---|
+| `GET /api/provinces` | คืนข้อมูลทุกจังหวัด เรียงจากอัตรามากไปน้อย รองรับ query `field` (`patient`, `patient_rate`, `dead`, `dead_rate`, `cfr`), `min`, `max` |
+| `GET /api/provinces?province=เชียงใหม่` | ค้นหาแบบ partial match ด้วย query `province` |
+| `GET /api/provinces/:province` | ค้นหาจังหวัดเดียวด้วย path param เช่น `/api/provinces/เชียงใหม่` |
+
 ## โครงสร้าง
 
 ```text
@@ -62,7 +76,8 @@ backend/
   server.js          # Express app entrypoint
   core.js            # FAQ search, AI assistant, chart rendering, LINE service
   routes.js          # web, simulator และ signed webhook
-  data/              # FAQ และข้อมูลสถิติ
+  data/              # FAQ, ข้อมูลสถิติ และ province_stats.json
+  scripts/           # convert_province_stats.js (xlsx → json)
 frontend/
   index.html         # หน้า simulator (เสิร์ฟตรงผ่าน express.static)
   app.css, app.js    # สไตล์และสคริปต์ของ simulator
