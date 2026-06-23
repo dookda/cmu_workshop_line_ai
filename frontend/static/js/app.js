@@ -15,6 +15,30 @@ function addMessage(text, role, loading = false) {
   return item;
 }
 
+function addImage(src, caption) {
+  const item = document.createElement("div");
+  item.className = "message bot";
+  const bubble = document.createElement("span");
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = caption || "chart";
+  img.style.maxWidth = "100%";
+  img.style.borderRadius = "8px";
+  bubble.append(img);
+  if (caption) {
+    const captionText = document.createElement("div");
+    captionText.textContent = caption;
+    captionText.style.marginTop = "6px";
+    bubble.append(captionText);
+  }
+  const meta = document.createElement("small");
+  meta.textContent = "BOT · NOW";
+  item.append(bubble, meta);
+  messages.append(item);
+  messages.scrollTop = messages.scrollHeight;
+  return item;
+}
+
 async function send(text) {
   if (!text.trim()) return;
   addMessage(text, "user");
@@ -26,6 +50,8 @@ async function send(text) {
     pending.remove();
     if (data.type === "flex") {
       addMessage(`${data.altText}\n\nพิมพ์หัวข้อที่สนใจเพื่อดูรายละเอียด`, "bot");
+    } else if (data.type === "image") {
+      addImage(data.originalContentUrl, data.caption);
     } else {
       addMessage(data.text, "bot");
     }

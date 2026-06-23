@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="th">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,9 +8,12 @@
   <meta name="description" content="LINE Bot และ AI Health Assistant สำหรับ workshop สาธารณสุข">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600&family=Pridi:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600&family=Pridi:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/css/app.css">
 </head>
+
 <body>
   <div class="grain"></div>
   <main>
@@ -19,7 +23,7 @@
         <p class="eyebrow">PUBLIC HEALTH × CONVERSATIONAL AI</p>
         <h1>สุขภาพที่เข้าใจง่าย<br><em>เริ่มจากคำถามหนึ่งข้อ</em></h1>
         <p class="lede">ห้องทดลอง LINE Bot ที่รวม FAQ, Flex Message, สถิติ และ AI แบบ RAG ไว้ในประสบการณ์เดียว</p>
-        <div class="chips"><span>LINE Webhook</span><span>Flask</span><span>OpenAI</span><span>RAG</span></div>
+        <div class="chips"><span>LINE Webhook</span><span>Express.js</span><span>OpenAI</span><span>RAG</span></div>
       </div>
       <div class="pulse" aria-hidden="true"><i></i><i></i><i></i><b>1669</b></div>
     </section>
@@ -36,9 +40,12 @@
         </div>
       </div>
       <div class="phone" aria-label="โปรแกรมจำลองแชต LINE">
-        <div class="phone-top"><span class="avatar">+</span><div><strong>HealthLine AI</strong><small>พร้อมให้ข้อมูลสุขภาพ</small></div><span class="online"></span></div>
+        <div class="phone-top"><span class="avatar">+</span>
+          <div><strong>HealthLine AI</strong><small>พร้อมให้ข้อมูลสุขภาพ</small></div><span class="online"></span>
+        </div>
         <div class="messages" id="messages" aria-live="polite">
-          <div class="message bot"><span>สวัสดีค่ะ ฉันคือ HealthLine AI 👋<br>ลองถามเรื่องสุขภาพทั่วไป หรือกดหัวข้อด้านล่างได้เลย</span><small>BOT · NOW</small></div>
+          <div class="message bot"><span>สวัสดีค่ะ ฉันคือ HealthLine AI 👋<br>ลองถามเรื่องสุขภาพทั่วไป
+              หรือกดหัวข้อด้านล่างได้เลย</span><small>BOT · NOW</small></div>
         </div>
         <form id="chat-form">
           <label class="sr-only" for="message">พิมพ์คำถามสุขภาพ</label>
@@ -50,6 +57,7 @@
 
     <footer><span>ข้อมูลเพื่อสุขศึกษา ไม่แทนคำแนะนำจากแพทย์</span><strong>เหตุฉุกเฉิน โทร 1669</strong></footer>
   </main>
-  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+  <script src="/js/app.js" defer></script>
 </body>
+
 </html>

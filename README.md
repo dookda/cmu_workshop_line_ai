@@ -4,34 +4,32 @@
 
 โปรเจกต์นี้ครอบคลุมทุกหัวข้อในกำหนดการ:
 
-- Flask webhook และการตรวจสอบ `X-Line-Signature`
+- Express.js webhook และการตรวจสอบ `X-Line-Signature`
 - LINE Messaging API, Text Message, Flex Message และ Rich Menu
 - FAQ จาก static JSON พร้อมการค้นหาภาษาไทยแบบไม่ต้องใช้ API
 - Flex Card สถิติสุขภาพและ bar chart
 - OpenAI Responses API พร้อม RAG จากฐานความรู้ท้องถิ่น
 - Health-safety guardrails, ข้อความฉุกเฉิน และคำเตือนทางการแพทย์
 - Web simulator สำหรับทดลองได้ทันทีโดยยังไม่ต้องมี LINE/OpenAI key
-- Unit/integration tests, Docker และสคริปต์สร้าง Rich Menu
+- สคริปต์สร้าง Rich Menu
 
 ## เริ่มใช้งานแบบเร็ว
 
-ต้องการ Python 3.11 ขึ้นไป
+ต้องการ Node.js 20 ขึ้นไป
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate              # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+npm install
 cp .env.example .env
-flask --app run.py run --debug
+npm run dev
 ```
 
-เปิด <http://localhost:5000> แล้วทดลองถาม `ไข้หวัดใหญ่ป้องกันอย่างไร` หรือพิมพ์ `สถิติ`
+เปิด <http://localhost:3001> แล้วทดลองถาม `ไข้หวัดใหญ่ป้องกันอย่างไร` หรือพิมพ์ `สถิติ`
 
 ## เชื่อมต่อ LINE
 
 1. สร้าง Messaging API channel ที่ [LINE Developers Console](https://developers.line.biz/console/)
 2. ใส่ `LINE_CHANNEL_SECRET` และ `LINE_CHANNEL_ACCESS_TOKEN` ใน `.env`
-3. รันแอป แล้วเปิด public URL ด้วย `ngrok http 5000`
+3. รันแอป แล้วเปิด public URL ด้วย `ngrok http 3001`
 4. ตั้ง Webhook URL เป็น `https://<ngrok-domain>/webhook` และกด Verify
 5. เปิด **Use webhook** และปิดข้อความตอบกลับอัตโนมัติใน LINE Official Account Manager
 
@@ -50,7 +48,7 @@ RAG ในโปรเจกต์นี้ตั้งใจใช้ lexical r
 เตรียมภาพ PNG/JPEG ขนาด 2500×1686 แล้วรัน:
 
 ```bash
-python scripts/create_rich_menu.py path/to/rich-menu.png
+node scripts/create_rich_menu.js path/to/rich-menu.png
 ```
 
 เมนูมี 3 ช่อง: FAQ, สถิติ และความช่วยเหลือ สคริปต์จะสร้าง อัปโหลด และตั้งเป็น default rich menu
@@ -61,31 +59,22 @@ python scripts/create_rich_menu.py path/to/rich-menu.png
 |---|---|
 | `เมนู`, `help`, `ช่วยเหลือ` | Flex Message แนะนำการใช้งาน |
 | `faq`, `คำถาม` | รายการหัวข้อ FAQ |
-| `สถิติ`, `stats` | Flex Card bar chart |
+| `สถิติ`, `stats` | รายการหัวข้อสถิติให้เลือก |
+| คำขอกราฟ เช่น `ขอกราฟฝุ่น PM2.5`, `กราฟไข้หวัดใหญ่รายเดือน` | OpenAI เลือกชุดข้อมูลที่ตรงที่สุดจาก `data/health_stats.json` แล้วสร้าง Flex Card bar chart (ถ้าไม่มี API key จะค้นหาในเครื่องแบบ lexical แทน) |
 | คำถามสุขภาพทั่วไป | ค้น FAQ และให้ AI สรุปแบบมีแหล่งอ้างอิง |
 | ข้อความฉุกเฉิน เช่น `เจ็บหน้าอก หายใจไม่ออก` | แนะนำให้โทร 1669 ทันที |
-
-## ทดสอบและ Docker
-
-```bash
-pytest -q
-docker compose up --build
-```
 
 Endpoints: `GET /health` สำหรับ health check, `POST /api/chat` สำหรับ simulator, `POST /webhook` สำหรับ LINE
 
 ## โครงสร้าง
 
 ```text
+server.js             # Express app entrypoint
 app/
-  ai.py            # OpenAI + grounded prompt + safety
-  health_data.py   # โหลด/ค้น FAQ
-  line_service.py  # แปลง LINE events เป็น replies
-  messages.py      # Flex Message builders
-  routes.py        # web, simulator และ signed webhook
+  core.js              # FAQ search, AI assistant, Flex builders, LINE service
+  routes.js             # web, simulator และ signed webhook
 data/               # FAQ และข้อมูลสถิติ
 scripts/            # Rich Menu provisioning
-tests/              # retrieval, safety และ routes
 ```
 
 > โปรเจกต์นี้ให้ข้อมูลเพื่อการเรียนรู้และสุขศึกษา ไม่ใช่การวินิจฉัยหรือคำแนะนำแทนแพทย์ หากมีอาการฉุกเฉินให้โทร 1669

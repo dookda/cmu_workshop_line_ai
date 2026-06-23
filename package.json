@@ -1,0 +1,19 @@
+{
+    "name": "cmu-workshop-line-ai",
+    "version": "1.0.0",
+    "description": "LINE Bot + AI Health Assistant workshop",
+    "type": "module",
+    "scripts": {
+        "start": "node backend/server.js",
+        "dev": "node --watch backend/server.js"
+    },
+    "engines": {
+        "node": ">=20"
+    },
+    "dependencies": {
+        "@line/bot-sdk": "^9.4.0",
+        "dotenv": "^16.4.0",
+        "express": "^4.21.0",
+        "openai": "^4.79.0"
+    }
+}

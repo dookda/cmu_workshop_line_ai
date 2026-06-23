@@ -1,0 +1,15 @@
+import 'dotenv/config';
+import express from 'express';
+import { fileURLToPath } from 'url';
+import path from 'path';
+import router from './routes.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const FRONTEND_DIR = path.join(__dirname, '..', 'frontend');
+
+const app = express();
+app.use(express.static(path.join(FRONTEND_DIR, 'static')));
+app.use(router);
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`HealthLine AI listening on :${PORT}`));
