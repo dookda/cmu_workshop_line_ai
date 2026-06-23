@@ -2,20 +2,37 @@ const form = document.querySelector("#chat-form");
 const input = document.querySelector("#message");
 const messages = document.querySelector("#messages");
 
-function addMessage(text, role, loading = false) {
+const MODE_LABELS = {
+  ai: { text: "ตอบโดย AI", cls: "mode-ai" },
+  local: { text: "ฐานข้อมูลในเครื่อง", cls: "mode-local" },
+  fallback: { text: "AI ล้มเหลว ใช้ข้อมูลในเครื่อง", cls: "mode-fallback" },
+  emergency: { text: "ฉุกเฉิน", cls: "mode-emergency" },
+};
+
+function buildMeta(role, mode) {
+  const meta = document.createElement("small");
+  if (role !== "bot") {
+    meta.textContent = "YOU · NOW";
+    return meta;
+  }
+  const label = MODE_LABELS[mode];
+  meta.textContent = `BOT · NOW${label ? " · " + label.text : ""}`;
+  if (label) meta.classList.add(label.cls);
+  return meta;
+}
+
+function addMessage(text, role, { loading = false, mode = null } = {}) {
   const item = document.createElement("div");
   item.className = `message ${role}${loading ? " loading" : ""}`;
   const bubble = document.createElement("span");
   bubble.textContent = text;
-  const meta = document.createElement("small");
-  meta.textContent = role === "user" ? "YOU · NOW" : "BOT · NOW";
-  item.append(bubble, meta);
+  item.append(bubble, buildMeta(role, mode));
   messages.append(item);
   messages.scrollTop = messages.scrollHeight;
   return item;
 }
 
-function addImage(src, caption) {
+function addImage(src, caption, mode) {
   const item = document.createElement("div");
   item.className = "message bot";
   const bubble = document.createElement("span");
@@ -31,9 +48,7 @@ function addImage(src, caption) {
     captionText.style.marginTop = "6px";
     bubble.append(captionText);
   }
-  const meta = document.createElement("small");
-  meta.textContent = "BOT · NOW";
-  item.append(bubble, meta);
+  item.append(bubble, buildMeta("bot", mode));
   messages.append(item);
   messages.scrollTop = messages.scrollHeight;
   return item;
@@ -42,7 +57,7 @@ function addImage(src, caption) {
 async function send(text) {
   if (!text.trim()) return;
   addMessage(text, "user");
-  const pending = addMessage("กำลังค้นฐานความรู้", "bot", true);
+  const pending = addMessage("กำลังค้นฐานความรู้", "bot", { loading: true });
   try {
     const response = await fetch("/api/chat", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({message:text})});
     const data = await response.json();
@@ -51,9 +66,9 @@ async function send(text) {
     if (data.type === "flex") {
       addMessage(`${data.altText}\n\nพิมพ์หัวข้อที่สนใจเพื่อดูรายละเอียด`, "bot");
     } else if (data.type === "image") {
-      addImage(data.originalContentUrl, data.caption);
+      addImage(data.originalContentUrl, data.caption, data.mode);
     } else {
-      addMessage(data.text, "bot");
+      addMessage(data.text, "bot", { mode: data.mode });
     }
   } catch (_) {
     pending.remove();

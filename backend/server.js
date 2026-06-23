@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const FRONTEND_DIR = path.join(__dirname, '..', 'frontend');
 
 const app = express();
-app.use(express.static(path.join(FRONTEND_DIR, 'static')));
+app.use(express.static(FRONTEND_DIR));
 app.use(router);
 
 const PORT = process.env.PORT || 3001;

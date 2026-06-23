@@ -38,6 +38,10 @@ h2 { font:500 clamp(44px,6vw,84px)/1.05 "Pridi",serif; margin:16px 0 24px; lette
 .message { display:flex; flex-direction:column; max-width:85%; animation:rise .3s ease-out; }.message span { padding:12px 15px; line-height:1.55; white-space:pre-wrap; }.message small { font-size:9px; margin-top:4px; color:#6d7e78; letter-spacing:.07em; }
 .message.bot { align-self:flex-start; }.message.bot span { background:#fff; border-radius:3px 16px 16px 16px; }.message.user { align-self:flex-end; }.message.user span { background:var(--mint); border-radius:16px 3px 16px 16px; }.message.user small { text-align:right; }
 .message.loading span::after { content:"···"; animation:blink 1s infinite; }
+.message small.mode-ai { color:var(--green); font-weight:700; }
+.message small.mode-local { color:#6d7e78; }
+.message small.mode-fallback { color:#b9770e; font-weight:700; }
+.message small.mode-emergency { color:#b42318; font-weight:700; }
 @keyframes rise { from { opacity:0; transform:translateY(8px); } } @keyframes blink { 50% { opacity:.2; } }
 #chat-form { display:flex; gap:8px; padding:14px; background:#fff; border-top:1px solid var(--line); }
 #chat-form input { flex:1; border:0; background:#f2f5f3; border-radius:99px; padding:13px 18px; font:16px inherit; outline:none; min-width:0; }

@@ -1,8 +1,20 @@
 // core.js — all domain logic: FAQ search, AI assistant, LINE messaging, flex messages
 import { readFileSync } from 'fs';
 import { createHmac } from 'crypto';
-import OpenAI from 'openai';
+import OpenAI, { APIError } from 'openai';
 import * as line from '@line/bot-sdk';
+
+// The SDK already retries API-level errors (429, 5xx, timeouts) internally, so retrying
+// those again here would be redundant. A second attempt only helps with errors that slip
+// past that logic, like a connection dropping mid-body-read ("Premature close").
+async function withRetry(fn) {
+    try {
+        return await fn();
+    } catch (err) {
+        if (err instanceof APIError) throw err;
+        return await fn();
+    }
+}
 
 // ---------------------------------------------------------------------------
 // Emergency detection
@@ -92,7 +104,7 @@ async function pickChartTopic(question, statsRepository, { apiKey, model }) {
         try {
             const topics = statsRepository.topics;
             const client = new OpenAI({ apiKey });
-            const response = await client.responses.create({
+            const response = await withRetry(() => client.responses.create({
                 model,
                 instructions:
                     'เลือกหัวข้อสถิติที่ตรงกับคำขอของผู้ใช้มากที่สุดจากรายการนี้:\n' +
@@ -113,19 +125,19 @@ async function pickChartTopic(question, statsRepository, { apiKey, model }) {
                     strict: true,
                 }],
                 tool_choice: { type: 'function', name: 'show_chart' },
-            });
+            }));
             const call = response.output.find(o => o.type === 'function_call');
             if (call) {
                 const { topic } = JSON.parse(call.arguments);
                 const match = statsRepository.findById(topic);
-                if (match) return match;
+                if (match) return { item: match, mode: 'ai' };
             }
         } catch (err) {
             console.error('Chart topic selection failed; using local fallback', err.message);
         }
     }
     const [best] = statsRepository.search(question, 1);
-    return best ? best.item : null;
+    return { item: best ? best.item : null, mode: 'local' };
 }
 
 // ---------------------------------------------------------------------------
@@ -147,8 +159,8 @@ export class HealthAssistant {
         }
 
         if (this.statsRepository && isChartRequest(question)) {
-            const chart = await pickChartTopic(question, this.statsRepository, { apiKey: this.apiKey, model: this.model });
-            if (chart) return { chart, sources: [chart.source], mode: 'chart' };
+            const { item: chart, mode } = await pickChartTopic(question, this.statsRepository, { apiKey: this.apiKey, model: this.model });
+            if (chart) return { chart, sources: [chart.source], mode };
         }
 
         const results = this.repository.search(question, this.topK);
@@ -172,14 +184,14 @@ export class HealthAssistant {
 
         try {
             const client = new OpenAI({ apiKey: this.apiKey });
-            const response = await client.responses.create({
+            const response = await withRetry(() => client.responses.create({
                 model: this.model,
                 instructions:
                     'คุณคือผู้ช่วยสุขศึกษาภาษาไทย ตอบอย่างกระชับ สุภาพ และเข้าใจง่าย ' +
                     'ใช้เฉพาะฐานความรู้ที่ให้มา ห้ามวินิจฉัย ห้ามแต่งข้อมูลหรือขนาดยา ' +
                     'ถ้าฐานความรู้ไม่พอให้บอกตรงๆ อ้างแหล่งข้อมูลท้ายคำตอบ และเตือนให้พบแพทย์เมื่ออาการรุนแรง',
                 input: `ฐานความรู้:\n${context}\n\nคำถามผู้ใช้: ${question}`,
-            });
+            }));
             return { text: response.output_text.trim() + DISCLAIMER, sources, mode: 'ai' };
         } catch (err) {
             console.error('OpenAI request failed; using local fallback', err.message);
@@ -270,7 +282,7 @@ export function statsMenuFlex(topics) {
 // ---------------------------------------------------------------------------
 // Chart image rendering (via QuickChart's hosted Chart.js renderer)
 // ---------------------------------------------------------------------------
-export function statsChartImage(stats) {
+export function statsChartImage(stats, mode = 'local') {
     const config = {
         type: 'bar',
         data: {
@@ -296,6 +308,7 @@ export function statsChartImage(stats) {
         previewImageUrl: url,
         altText: stats.title,
         caption: `${stats.title}\n\n${stats.source}`,
+        mode,
     };
 }
 
@@ -316,7 +329,7 @@ export class LineService {
         if (['faq', 'คำถาม', 'คำถามที่พบบ่อย'].includes(normalized)) return faqFlex(this.repository.items);
         if (['สถิติ', 'stats', 'ข้อมูลสถิติ'].includes(normalized)) return statsMenuFlex(this.statsRepository.topics);
         const result = await this.assistant.answer(text);
-        if (result.chart) return statsChartImage(result.chart);
+        if (result.chart) return statsChartImage(result.chart, result.mode);
         return { type: 'text', text: result.text, mode: result.mode };
     }
 

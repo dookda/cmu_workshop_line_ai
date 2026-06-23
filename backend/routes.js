@@ -4,7 +4,6 @@ import path from 'path';
 import { FAQRepository, StatsRepository, HealthAssistant, LineService, validSignature } from './core.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const FRONTEND_DIR = path.join(__dirname, '..', 'frontend');
 
 const {
     LINE_CHANNEL_SECRET = '',
@@ -31,10 +30,6 @@ function services() {
 }
 
 const router = express.Router();
-
-router.get('/', (_req, res) => {
-    res.sendFile(path.join(FRONTEND_DIR, 'templates/index.html'));
-});
 
 router.get('/health', (_req, res) => {
     res.json({ status: 'ok', service: 'healthline-ai' });
