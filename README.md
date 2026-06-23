@@ -7,7 +7,7 @@
 - Express.js webhook และการตรวจสอบ `X-Line-Signature`
 - LINE Messaging API, Text Message, Flex Message และ Rich Menu
 - FAQ จาก static JSON พร้อมการค้นหาภาษาไทยแบบไม่ต้องใช้ API
-- Flex Card สถิติสุขภาพและ bar chart
+- กราฟสถิติสุขภาพแบบรูปภาพจริง (เรนเดอร์ด้วย Chart.js ผ่าน QuickChart) ตามคำขอ
 - OpenAI Responses API พร้อม RAG จากฐานความรู้ท้องถิ่น
 - Health-safety guardrails, ข้อความฉุกเฉิน และคำเตือนทางการแพทย์
 - Web simulator สำหรับทดลองได้ทันทีโดยยังไม่ต้องมี LINE/OpenAI key
@@ -48,7 +48,7 @@ RAG ในโปรเจกต์นี้ตั้งใจใช้ lexical r
 เตรียมภาพ PNG/JPEG ขนาด 2500×1686 แล้วรัน:
 
 ```bash
-node scripts/create_rich_menu.js path/to/rich-menu.png
+node backend/scripts/create_rich_menu.js path/to/rich-menu.png
 ```
 
 เมนูมี 3 ช่อง: FAQ, สถิติ และความช่วยเหลือ สคริปต์จะสร้าง อัปโหลด และตั้งเป็น default rich menu
