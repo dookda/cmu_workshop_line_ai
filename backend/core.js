@@ -103,7 +103,7 @@ async function pickChartTopic(question, statsRepository, { apiKey, model }) {
     if (apiKey) {
         try {
             const topics = statsRepository.topics;
-            const client = new OpenAI({ apiKey });
+            const client = new OpenAI({ apiKey, fetch: globalThis.fetch });
             const response = await withRetry(() => client.responses.create({
                 model,
                 instructions:
@@ -183,7 +183,7 @@ export class HealthAssistant {
         ).join('\n\n');
 
         try {
-            const client = new OpenAI({ apiKey: this.apiKey });
+            const client = new OpenAI({ apiKey: this.apiKey, fetch: globalThis.fetch });
             const response = await withRetry(() => client.responses.create({
                 model: this.model,
                 instructions:
