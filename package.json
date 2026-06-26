@@ -11,10 +11,8 @@
         "node": ">=20"
     },
     "dependencies": {
-        "@line/bot-sdk": "^9.4.0",
         "dotenv": "^16.4.0",
-        "express": "^4.21.0",
-        "openai": "^4.79.0"
+        "express": "^4.21.0"
     },
     "devDependencies": {
         "xlsx": "^0.18.5"

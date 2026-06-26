@@ -1,0 +1,14 @@
+@host = http://localhost:3000
+
+### Health check
+GET {{host}}/health
+
+### List provinces filtered by field + range
+GET {{host}}/api/provinces?field=patient_rate&min=500
+
+### List provinces for a specific year
+GET {{host}}/api/provinces?year=2026
+
+### Look up a single province by query param for a specific year
+GET {{host}}/api/provinces?province=เชียงราย&year=2026
+# GET {{host}}/api/provinces?province=เชียงราย

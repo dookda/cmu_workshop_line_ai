@@ -5,7 +5,8 @@
     "patient_rate": 265.402,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "เชียงใหม่",
@@ -13,7 +14,8 @@
     "patient_rate": 439.068,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "น่าน",
@@ -21,7 +23,8 @@
     "patient_rate": 399.897,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "พะเยา",
@@ -29,7 +32,8 @@
     "patient_rate": 571.511,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "แพร่",
@@ -37,7 +41,8 @@
     "patient_rate": 409.837,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "แม่ฮ่องสอน",
@@ -45,7 +50,8 @@
     "patient_rate": 286.825,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ลำปาง",
@@ -53,7 +59,8 @@
     "patient_rate": 497.022,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ลำพูน",
@@ -61,7 +68,8 @@
     "patient_rate": 431.752,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ตาก",
@@ -69,7 +77,8 @@
     "patient_rate": 135.404,
     "dead": 1,
     "dead_rate": 0.143,
-    "cfr": 0.10526315789473684
+    "cfr": 0.10526315789473684,
+    "year": 2029
   },
   {
     "province": "พิษณุโลก",
@@ -77,7 +86,8 @@
     "patient_rate": 460.076,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "เพชรบูรณ์",
@@ -85,7 +95,8 @@
     "patient_rate": 204.212,
     "dead": 1,
     "dead_rate": 0.104,
-    "cfr": 0.051150895140664954
+    "cfr": 0.051150895140664954,
+    "year": 2029
   },
   {
     "province": "สุโขทัย",
@@ -93,7 +104,8 @@
     "patient_rate": 205.194,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "อุตรดิตถ์",
@@ -101,7 +113,8 @@
     "patient_rate": 380.13,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "กำแพงเพชร",
@@ -109,7 +122,8 @@
     "patient_rate": 150.254,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ชัยนาท",
@@ -117,7 +131,8 @@
     "patient_rate": 197.383,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "นครสวรรค์",
@@ -125,7 +140,8 @@
     "patient_rate": 234.862,
     "dead": 1,
     "dead_rate": 0.099,
-    "cfr": 0.04212299915754002
+    "cfr": 0.04212299915754002,
+    "year": 2029
   },
   {
     "province": "พิจิตร",
@@ -133,7 +149,8 @@
     "patient_rate": 198.795,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "อุทัยธานี",
@@ -141,7 +158,8 @@
     "patient_rate": 126.71,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "นครนายก",
@@ -149,7 +167,8 @@
     "patient_rate": 194.411,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "นนทบุรี",
@@ -157,7 +176,8 @@
     "patient_rate": 437.719,
     "dead": 1,
     "dead_rate": 0.076,
-    "cfr": 0.017301038062283735
+    "cfr": 0.017301038062283735,
+    "year": 2029
   },
   {
     "province": "ปทุมธานี",
@@ -165,7 +185,8 @@
     "patient_rate": 347.188,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "พระนครศรีอยุธยา",
@@ -173,7 +194,8 @@
     "patient_rate": 356.796,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ลพบุรี",
@@ -181,7 +203,8 @@
     "patient_rate": 340.274,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "สระบุรี",
@@ -189,7 +212,8 @@
     "patient_rate": 334.481,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "สิงห์บุรี",
@@ -197,7 +221,8 @@
     "patient_rate": 245.369,
     "dead": 1,
     "dead_rate": 0.503,
-    "cfr": 0.20491803278688525
+    "cfr": 0.20491803278688525,
+    "year": 2029
   },
   {
     "province": "อ่างทอง",
@@ -205,7 +230,8 @@
     "patient_rate": 412.466,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "กาญจนบุรี",
@@ -213,7 +239,8 @@
     "patient_rate": 141.658,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "นครปฐม",
@@ -221,7 +248,8 @@
     "patient_rate": 292.852,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ประจวบคีรีขันธ์",
@@ -229,7 +257,8 @@
     "patient_rate": 157.195,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "เพชรบุรี",
@@ -237,7 +266,8 @@
     "patient_rate": 201.922,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ราชบุรี",
@@ -245,7 +275,8 @@
     "patient_rate": 235.602,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "สมุทรสงคราม",
@@ -253,7 +284,8 @@
     "patient_rate": 263.454,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "สมุทรสาคร",
@@ -261,7 +293,8 @@
     "patient_rate": 316.809,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "สุพรรณบุรี",
@@ -269,7 +302,8 @@
     "patient_rate": 231.783,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "จันทบุรี",
@@ -277,7 +311,8 @@
     "patient_rate": 207.153,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ฉะเชิงเทรา",
@@ -285,7 +320,8 @@
     "patient_rate": 267.153,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ชลบุรี",
@@ -293,7 +329,8 @@
     "patient_rate": 561.173,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ตราด",
@@ -301,7 +338,8 @@
     "patient_rate": 161.115,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ปราจีนบุรี",
@@ -309,7 +347,8 @@
     "patient_rate": 214.463,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ระยอง",
@@ -317,7 +356,8 @@
     "patient_rate": 503.623,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "สมุทรปราการ",
@@ -325,7 +365,8 @@
     "patient_rate": 358.223,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "สระแก้ว",
@@ -333,7 +374,8 @@
     "patient_rate": 133.019,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "กาฬสินธุ์",
@@ -341,7 +383,8 @@
     "patient_rate": 255.943,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ขอนแก่น",
@@ -349,7 +392,8 @@
     "patient_rate": 267.203,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "มหาสารคาม",
@@ -357,7 +401,8 @@
     "patient_rate": 242.266,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ร้อยเอ็ด",
@@ -365,7 +410,8 @@
     "patient_rate": 268.779,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "นครพนม",
@@ -373,7 +419,8 @@
     "patient_rate": 199.305,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "บึงกาฬ",
@@ -381,7 +428,8 @@
     "patient_rate": 259.57,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "เลย",
@@ -389,7 +437,8 @@
     "patient_rate": 210.059,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "สกลนคร",
@@ -397,7 +446,8 @@
     "patient_rate": 116.484,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "หนองคาย",
@@ -405,7 +455,8 @@
     "patient_rate": 320.405,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "หนองบัวลำภู",
@@ -413,7 +464,8 @@
     "patient_rate": 216.312,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "อุดรธานี",
@@ -421,7 +473,8 @@
     "patient_rate": 160.851,
     "dead": 2,
     "dead_rate": 0.129,
-    "cfr": 0.08025682182985554
+    "cfr": 0.08025682182985554,
+    "year": 2029
   },
   {
     "province": "ชัยภูมิ",
@@ -429,7 +482,8 @@
     "patient_rate": 221.914,
     "dead": 1,
     "dead_rate": 0.091,
-    "cfr": 0.04084967320261438
+    "cfr": 0.04084967320261438,
+    "year": 2029
   },
   {
     "province": "นครราชสีมา",
@@ -437,7 +491,8 @@
     "patient_rate": 342.416,
     "dead": 5,
     "dead_rate": 0.191,
-    "cfr": 0.05582849486377847
+    "cfr": 0.05582849486377847,
+    "year": 2029
   },
   {
     "province": "บุรีรัมย์",
@@ -445,7 +500,8 @@
     "patient_rate": 165.081,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "สุรินทร์",
@@ -453,7 +509,8 @@
     "patient_rate": 244.639,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "มุกดาหาร",
@@ -461,7 +518,8 @@
     "patient_rate": 305.907,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ยโสธร",
@@ -469,7 +527,8 @@
     "patient_rate": 362.681,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ศรีสะเกษ",
@@ -477,7 +536,8 @@
     "patient_rate": 202.463,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "อำนาจเจริญ",
@@ -485,7 +545,8 @@
     "patient_rate": 333.693,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "อุบลราชธานี",
@@ -493,7 +554,8 @@
     "patient_rate": 511.516,
     "dead": 1,
     "dead_rate": 0.054,
-    "cfr": 0.010475591870940708
+    "cfr": 0.010475591870940708,
+    "year": 2029
   },
   {
     "province": "กระบี่",
@@ -501,7 +563,8 @@
     "patient_rate": 142.91,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ชุมพร",
@@ -509,7 +572,8 @@
     "patient_rate": 213.411,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "นครศรีธรรมราช",
@@ -517,7 +581,8 @@
     "patient_rate": 290.059,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "พังงา",
@@ -525,7 +590,8 @@
     "patient_rate": 151.927,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ภูเก็ต",
@@ -533,7 +599,8 @@
     "patient_rate": 408.084,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ระนอง",
@@ -541,7 +608,8 @@
     "patient_rate": 38.397,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "สุราษฎร์ธานี",
@@ -549,7 +617,8 @@
     "patient_rate": 235.45,
     "dead": 2,
     "dead_rate": 0.186,
-    "cfr": 0.07895775759968417
+    "cfr": 0.07895775759968417,
+    "year": 2029
   },
   {
     "province": "ตรัง",
@@ -557,7 +626,8 @@
     "patient_rate": 56.625,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "นราธิวาส",
@@ -565,7 +635,8 @@
     "patient_rate": 86.173,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ปัตตานี",
@@ -573,7 +644,8 @@
     "patient_rate": 56.932,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "พัทลุง",
@@ -581,7 +653,8 @@
     "patient_rate": 232.793,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "ยะลา",
@@ -589,7 +662,8 @@
     "patient_rate": 59.065,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "สงขลา",
@@ -597,7 +671,8 @@
     "patient_rate": 172.584,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "สตูล",
@@ -605,7 +680,8 @@
     "patient_rate": 81.303,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
   },
   {
     "province": "กรุงเทพมหานคร",
@@ -613,7 +689,8 @@
     "patient_rate": 540.905,
     "dead": 3,
     "dead_rate": 0.055,
-    "cfr": 0.010199918400652794
+    "cfr": 0.010199918400652794,
+    "year": 2029
   },
   {
     "province": "ไม่ระบุ",
@@ -621,6 +698,2815 @@
     "patient_rate": 0,
     "dead": 0,
     "dead_rate": 0,
-    "cfr": 0
+    "cfr": 0,
+    "year": 2029
+  },
+  {
+    "province": "เชียงราย",
+    "patient": 3931,
+    "patient_rate": 303.107,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "เชียงราย",
+    "patient": 3310,
+    "patient_rate": 255.224,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "เชียงราย",
+    "patient": 3108,
+    "patient_rate": 239.648,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "เชียงราย",
+    "patient": 3839,
+    "patient_rate": 296.013,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "เชียงใหม่",
+    "patient": 7407,
+    "patient_rate": 411.772,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "เชียงใหม่",
+    "patient": 7746,
+    "patient_rate": 430.618,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "เชียงใหม่",
+    "patient": 8532,
+    "patient_rate": 474.314,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "เชียงใหม่",
+    "patient": 7200,
+    "patient_rate": 400.265,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "น่าน",
+    "patient": 2359,
+    "patient_rate": 502.588,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "น่าน",
+    "patient": 2031,
+    "patient_rate": 432.707,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "น่าน",
+    "patient": 1808,
+    "patient_rate": 385.196,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "น่าน",
+    "patient": 1402,
+    "patient_rate": 298.698,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "พะเยา",
+    "patient": 2320,
+    "patient_rate": 511.933,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "พะเยา",
+    "patient": 2587,
+    "patient_rate": 570.849,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "พะเยา",
+    "patient": 3067,
+    "patient_rate": 676.766,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "พะเยา",
+    "patient": 2381,
+    "patient_rate": 525.393,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "แพร่",
+    "patient": 1568,
+    "patient_rate": 373.619,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "แพร่",
+    "patient": 1506,
+    "patient_rate": 358.846,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "แพร่",
+    "patient": 1927,
+    "patient_rate": 459.16,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "แพร่",
+    "patient": 1495,
+    "patient_rate": 356.225,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "แม่ฮ่องสอน",
+    "patient": 896,
+    "patient_rate": 310.756,
+    "dead": 2,
+    "dead_rate": 0.694,
+    "cfr": 0.223,
+    "year": 2025
+  },
+  {
+    "province": "แม่ฮ่องสอน",
+    "patient": 737,
+    "patient_rate": 255.611,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "แม่ฮ่องสอน",
+    "patient": 889,
+    "patient_rate": 308.328,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "แม่ฮ่องสอน",
+    "patient": 903,
+    "patient_rate": 313.184,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ลำปาง",
+    "patient": 2528,
+    "patient_rate": 360.951,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ลำปาง",
+    "patient": 3361,
+    "patient_rate": 479.888,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ลำปาง",
+    "patient": 2534,
+    "patient_rate": 361.808,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ลำปาง",
+    "patient": 3743,
+    "patient_rate": 534.431,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ลำพูน",
+    "patient": 1397,
+    "patient_rate": 352.93,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ลำพูน",
+    "patient": 1753,
+    "patient_rate": 442.868,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ลำพูน",
+    "patient": 1391,
+    "patient_rate": 351.414,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ลำพูน",
+    "patient": 1289,
+    "patient_rate": 325.646,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ตาก",
+    "patient": 676,
+    "patient_rate": 96.351,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ตาก",
+    "patient": 1027,
+    "patient_rate": 146.379,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ตาก",
+    "patient": 868,
+    "patient_rate": 123.716,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ตาก",
+    "patient": 1007,
+    "patient_rate": 143.528,
+    "dead": 2,
+    "dead_rate": 0.285,
+    "cfr": 0.199,
+    "year": 2028
+  },
+  {
+    "province": "พิษณุโลก",
+    "patient": 3420,
+    "patient_rate": 408.479,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "พิษณุโลก",
+    "patient": 3287,
+    "patient_rate": 392.593,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "พิษณุโลก",
+    "patient": 4312,
+    "patient_rate": 515.018,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "พิษณุโลก",
+    "patient": 4067,
+    "patient_rate": 485.755,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "เพชรบูรณ์",
+    "patient": 2417,
+    "patient_rate": 252.471,
+    "dead": 2,
+    "dead_rate": 0.209,
+    "cfr": 0.083,
+    "year": 2025
+  },
+  {
+    "province": "เพชรบูรณ์",
+    "patient": 1701,
+    "patient_rate": 177.68,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "เพชรบูรณ์",
+    "patient": 1400,
+    "patient_rate": 146.239,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "เพชรบูรณ์",
+    "patient": 2453,
+    "patient_rate": 256.231,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "สุโขทัย",
+    "patient": 1424,
+    "patient_rate": 249.314,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "สุโขทัย",
+    "patient": 1156,
+    "patient_rate": 202.393,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "สุโขทัย",
+    "patient": 1059,
+    "patient_rate": 185.41,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "สุโขทัย",
+    "patient": 1311,
+    "patient_rate": 229.53,
+    "dead": 2,
+    "dead_rate": 0.35,
+    "cfr": 0.153,
+    "year": 2028
+  },
+  {
+    "province": "อุตรดิตถ์",
+    "patient": 1998,
+    "patient_rate": 459.746,
+    "dead": 1,
+    "dead_rate": 0.23,
+    "cfr": 0.05,
+    "year": 2025
+  },
+  {
+    "province": "อุตรดิตถ์",
+    "patient": 1283,
+    "patient_rate": 295.222,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "อุตรดิตถ์",
+    "patient": 2036,
+    "patient_rate": 468.49,
+    "dead": 2,
+    "dead_rate": 0.46,
+    "cfr": 0.098,
+    "year": 2027
+  },
+  {
+    "province": "อุตรดิตถ์",
+    "patient": 2140,
+    "patient_rate": 492.42,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "กำแพงเพชร",
+    "patient": 1125,
+    "patient_rate": 160.986,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "กำแพงเพชร",
+    "patient": 997,
+    "patient_rate": 142.67,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "กำแพงเพชร",
+    "patient": 1027,
+    "patient_rate": 146.963,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "กำแพงเพชร",
+    "patient": 1276,
+    "patient_rate": 182.594,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ชัยนาท",
+    "patient": 513,
+    "patient_rate": 164.113,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ชัยนาท",
+    "patient": 697,
+    "patient_rate": 222.976,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ชัยนาท",
+    "patient": 576,
+    "patient_rate": 184.267,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ชัยนาท",
+    "patient": 763,
+    "patient_rate": 244.09,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "นครสวรรค์",
+    "patient": 1850,
+    "patient_rate": 183.022,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "นครสวรรค์",
+    "patient": 1861,
+    "patient_rate": 184.11,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "นครสวรรค์",
+    "patient": 2561,
+    "patient_rate": 253.362,
+    "dead": 1,
+    "dead_rate": 0.099,
+    "cfr": 0.039,
+    "year": 2027
+  },
+  {
+    "province": "นครสวรรค์",
+    "patient": 1793,
+    "patient_rate": 177.383,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "พิจิตร",
+    "patient": 1230,
+    "patient_rate": 238.554,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "พิจิตร",
+    "patient": 953,
+    "patient_rate": 184.831,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "พิจิตร",
+    "patient": 770,
+    "patient_rate": 149.339,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "พิจิตร",
+    "patient": 1151,
+    "patient_rate": 223.232,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "อุทัยธานี",
+    "patient": 360,
+    "patient_rate": 112.631,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "อุทัยธานี",
+    "patient": 466,
+    "patient_rate": 145.795,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "อุทัยธานี",
+    "patient": 503,
+    "patient_rate": 157.371,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "อุทัยธานี",
+    "patient": 449,
+    "patient_rate": 140.476,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "นครนายก",
+    "patient": 586,
+    "patient_rate": 225.594,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "นครนายก",
+    "patient": 366,
+    "patient_rate": 140.9,
+    "dead": 1,
+    "dead_rate": 0.385,
+    "cfr": 0.273,
+    "year": 2026
+  },
+  {
+    "province": "นครนายก",
+    "patient": 520,
+    "patient_rate": 200.186,
+    "dead": 1,
+    "dead_rate": 0.385,
+    "cfr": 0.192,
+    "year": 2027
+  },
+  {
+    "province": "นครนายก",
+    "patient": 537,
+    "patient_rate": 206.73,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "นนทบุรี",
+    "patient": 6595,
+    "patient_rate": 499.439,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "นนทบุรี",
+    "patient": 4603,
+    "patient_rate": 348.585,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "นนทบุรี",
+    "patient": 4068,
+    "patient_rate": 308.069,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "นนทบุรี",
+    "patient": 4936,
+    "patient_rate": 373.803,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ปทุมธานี",
+    "patient": 3535,
+    "patient_rate": 284.693,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ปทุมธานี",
+    "patient": 5321,
+    "patient_rate": 428.529,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ปทุมธานี",
+    "patient": 4636,
+    "patient_rate": 373.362,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ปทุมธานี",
+    "patient": 3707,
+    "patient_rate": 298.545,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "พระนครศรีอยุธยา",
+    "patient": 3539,
+    "patient_rate": 430.222,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "พระนครศรีอยุธยา",
+    "patient": 2206,
+    "patient_rate": 268.174,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "พระนครศรีอยุธยา",
+    "patient": 2446,
+    "patient_rate": 297.35,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "พระนครศรีอยุธยา",
+    "patient": 3504,
+    "patient_rate": 425.967,
+    "dead": 2,
+    "dead_rate": 0.243,
+    "cfr": 0.057,
+    "year": 2028
+  },
+  {
+    "province": "ลพบุรี",
+    "patient": 1807,
+    "patient_rate": 249.949,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ลพบุรี",
+    "patient": 2981,
+    "patient_rate": 412.34,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ลพบุรี",
+    "patient": 2318,
+    "patient_rate": 320.632,
+    "dead": 2,
+    "dead_rate": 0.277,
+    "cfr": 0.086,
+    "year": 2027
+  },
+  {
+    "province": "ลพบุรี",
+    "patient": 2975,
+    "patient_rate": 411.51,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "สระบุรี",
+    "patient": 1577,
+    "patient_rate": 247.177,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "สระบุรี",
+    "patient": 2451,
+    "patient_rate": 384.167,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "สระบุรี",
+    "patient": 1527,
+    "patient_rate": 239.34,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "สระบุรี",
+    "patient": 2211,
+    "patient_rate": 346.55,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "สิงห์บุรี",
+    "patient": 347,
+    "patient_rate": 174.473,
+    "dead": 1,
+    "dead_rate": 0.503,
+    "cfr": 0.288,
+    "year": 2025
+  },
+  {
+    "province": "สิงห์บุรี",
+    "patient": 382,
+    "patient_rate": 192.072,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "สิงห์บุรี",
+    "patient": 406,
+    "patient_rate": 204.139,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "สิงห์บุรี",
+    "patient": 343,
+    "patient_rate": 172.462,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "อ่างทอง",
+    "patient": 1305,
+    "patient_rate": 487.12,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "อ่างทอง",
+    "patient": 1307,
+    "patient_rate": 487.867,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "อ่างทอง",
+    "patient": 1198,
+    "patient_rate": 447.18,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "อ่างทอง",
+    "patient": 1148,
+    "patient_rate": 428.517,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "กาญจนบุรี",
+    "patient": 1608,
+    "patient_rate": 179.359,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "กาญจนบุรี",
+    "patient": 1138,
+    "patient_rate": 126.934,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "กาญจนบุรี",
+    "patient": 1595,
+    "patient_rate": 177.909,
+    "dead": 1,
+    "dead_rate": 0.112,
+    "cfr": 0.063,
+    "year": 2027
+  },
+  {
+    "province": "กาญจนบุรี",
+    "patient": 1362,
+    "patient_rate": 151.92,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "นครปฐม",
+    "patient": 2227,
+    "patient_rate": 240.657,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "นครปฐม",
+    "patient": 2639,
+    "patient_rate": 285.179,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "นครปฐม",
+    "patient": 2714,
+    "patient_rate": 293.284,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "นครปฐม",
+    "patient": 3232,
+    "patient_rate": 349.261,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ประจวบคีรีขันธ์",
+    "patient": 876,
+    "patient_rate": 158.827,
+    "dead": 2,
+    "dead_rate": 0.363,
+    "cfr": 0.228,
+    "year": 2025
+  },
+  {
+    "province": "ประจวบคีรีขันธ์",
+    "patient": 704,
+    "patient_rate": 127.642,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ประจวบคีรีขันธ์",
+    "patient": 923,
+    "patient_rate": 167.348,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ประจวบคีรีขันธ์",
+    "patient": 771,
+    "patient_rate": 139.789,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "เพชรบุรี",
+    "patient": 1121,
+    "patient_rate": 231.683,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "เพชรบุรี",
+    "patient": 1109,
+    "patient_rate": 229.203,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "เพชรบุรี",
+    "patient": 880,
+    "patient_rate": 181.874,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "เพชรบุรี",
+    "patient": 737,
+    "patient_rate": 152.32,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ราชบุรี",
+    "patient": 1805,
+    "patient_rate": 209.179,
+    "dead": 2,
+    "dead_rate": 0.232,
+    "cfr": 0.111,
+    "year": 2025
+  },
+  {
+    "province": "ราชบุรี",
+    "patient": 1740,
+    "patient_rate": 201.647,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ราชบุรี",
+    "patient": 2004,
+    "patient_rate": 232.241,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ราชบุรี",
+    "patient": 1735,
+    "patient_rate": 201.067,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "สมุทรสงคราม",
+    "patient": 453,
+    "patient_rate": 243.561,
+    "dead": 1,
+    "dead_rate": 0.538,
+    "cfr": 0.221,
+    "year": 2025
+  },
+  {
+    "province": "สมุทรสงคราม",
+    "patient": 579,
+    "patient_rate": 311.306,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "สมุทรสงคราม",
+    "patient": 533,
+    "patient_rate": 286.573,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "สมุทรสงคราม",
+    "patient": 621,
+    "patient_rate": 333.888,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "สมุทรสาคร",
+    "patient": 1925,
+    "patient_rate": 326.476,
+    "dead": 1,
+    "dead_rate": 0.17,
+    "cfr": 0.052,
+    "year": 2025
+  },
+  {
+    "province": "สมุทรสาคร",
+    "patient": 2251,
+    "patient_rate": 381.765,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "สมุทรสาคร",
+    "patient": 2086,
+    "patient_rate": 353.781,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "สมุทรสาคร",
+    "patient": 2172,
+    "patient_rate": 368.367,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "สุพรรณบุรี",
+    "patient": 2294,
+    "patient_rate": 279.847,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "สุพรรณบุรี",
+    "patient": 1419,
+    "patient_rate": 173.105,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "สุพรรณบุรี",
+    "patient": 2441,
+    "patient_rate": 297.78,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "สุพรรณบุรี",
+    "patient": 1809,
+    "patient_rate": 220.682,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "จันทบุรี",
+    "patient": 975,
+    "patient_rate": 181.959,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "จันทบุรี",
+    "patient": 788,
+    "patient_rate": 147.06,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "จันทบุรี",
+    "patient": 1284,
+    "patient_rate": 239.626,
+    "dead": 1,
+    "dead_rate": 0.187,
+    "cfr": 0.078,
+    "year": 2027
+  },
+  {
+    "province": "จันทบุรี",
+    "patient": 1111,
+    "patient_rate": 207.34,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ฉะเชิงเทรา",
+    "patient": 1734,
+    "patient_rate": 236.469,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ฉะเชิงเทรา",
+    "patient": 2131,
+    "patient_rate": 290.609,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ฉะเชิงเทรา",
+    "patient": 1816,
+    "patient_rate": 247.652,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ฉะเชิงเทรา",
+    "patient": 1807,
+    "patient_rate": 246.424,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ชลบุรี",
+    "patient": 7758,
+    "patient_rate": 472.855,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ชลบุรี",
+    "patient": 11250,
+    "patient_rate": 685.695,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ชลบุรี",
+    "patient": 10408,
+    "patient_rate": 634.375,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ชลบุรี",
+    "patient": 7000,
+    "patient_rate": 426.655,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ตราด",
+    "patient": 413,
+    "patient_rate": 182.804,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ตราด",
+    "patient": 366,
+    "patient_rate": 162,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ตราด",
+    "patient": 362,
+    "patient_rate": 160.23,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ตราด",
+    "patient": 456,
+    "patient_rate": 201.836,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ปราจีนบุรี",
+    "patient": 874,
+    "patient_rate": 174.363,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ปราจีนบุรี",
+    "patient": 832,
+    "patient_rate": 165.984,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ปราจีนบุรี",
+    "patient": 922,
+    "patient_rate": 183.939,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ปราจีนบุรี",
+    "patient": 875,
+    "patient_rate": 174.563,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ระยอง",
+    "patient": 4170,
+    "patient_rate": 530.33,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ระยอง",
+    "patient": 2898,
+    "patient_rate": 368.56,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ระยอง",
+    "patient": 4625,
+    "patient_rate": 588.196,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ระยอง",
+    "patient": 4582,
+    "patient_rate": 582.727,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "สมุทรปราการ",
+    "patient": 3913,
+    "patient_rate": 282.948,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "สมุทรปราการ",
+    "patient": 6014,
+    "patient_rate": 434.871,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "สมุทรปราการ",
+    "patient": 5563,
+    "patient_rate": 402.26,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "สมุทรปราการ",
+    "patient": 3824,
+    "patient_rate": 276.513,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "สระแก้ว",
+    "patient": 811,
+    "patient_rate": 144.416,
+    "dead": 1,
+    "dead_rate": 0.178,
+    "cfr": 0.123,
+    "year": 2025
+  },
+  {
+    "province": "สระแก้ว",
+    "patient": 858,
+    "patient_rate": 152.785,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "สระแก้ว",
+    "patient": 758,
+    "patient_rate": 134.978,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "สระแก้ว",
+    "patient": 908,
+    "patient_rate": 161.688,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "กาฬสินธุ์",
+    "patient": 2137,
+    "patient_rate": 222.609,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "กาฬสินธุ์",
+    "patient": 2421,
+    "patient_rate": 252.193,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "กาฬสินธุ์",
+    "patient": 2944,
+    "patient_rate": 306.673,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "กาฬสินธุ์",
+    "patient": 2788,
+    "patient_rate": 290.423,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ขอนแก่น",
+    "patient": 4892,
+    "patient_rate": 276.647,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ขอนแก่น",
+    "patient": 4059,
+    "patient_rate": 229.54,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ขอนแก่น",
+    "patient": 6065,
+    "patient_rate": 342.981,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ขอนแก่น",
+    "patient": 5578,
+    "patient_rate": 315.441,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "มหาสารคาม",
+    "patient": 2480,
+    "patient_rate": 267.626,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "มหาสารคาม",
+    "patient": 2558,
+    "patient_rate": 276.043,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "มหาสารคาม",
+    "patient": 2597,
+    "patient_rate": 280.252,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "มหาสารคาม",
+    "patient": 2260,
+    "patient_rate": 243.885,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ร้อยเอ็ด",
+    "patient": 2426,
+    "patient_rate": 190.604,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ร้อยเอ็ด",
+    "patient": 3865,
+    "patient_rate": 303.663,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ร้อยเอ็ด",
+    "patient": 2413,
+    "patient_rate": 189.583,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ร้อยเอ็ด",
+    "patient": 4153,
+    "patient_rate": 326.29,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "นครพนม",
+    "patient": 1263,
+    "patient_rate": 178.021,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "นครพนม",
+    "patient": 1673,
+    "patient_rate": 235.811,
+    "dead": 1,
+    "dead_rate": 0.141,
+    "cfr": 0.06,
+    "year": 2026
+  },
+  {
+    "province": "นครพนม",
+    "patient": 1799,
+    "patient_rate": 253.571,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "นครพนม",
+    "patient": 1637,
+    "patient_rate": 230.737,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "บึงกาฬ",
+    "patient": 1199,
+    "patient_rate": 286.579,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "บึงกาฬ",
+    "patient": 843,
+    "patient_rate": 201.489,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "บึงกาฬ",
+    "patient": 1265,
+    "patient_rate": 302.354,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "บึงกาฬ",
+    "patient": 1076,
+    "patient_rate": 257.18,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "เลย",
+    "patient": 1700,
+    "patient_rate": 269.51,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "เลย",
+    "patient": 1114,
+    "patient_rate": 176.608,
+    "dead": 1,
+    "dead_rate": 0.159,
+    "cfr": 0.09,
+    "year": 2026
+  },
+  {
+    "province": "เลย",
+    "patient": 987,
+    "patient_rate": 156.474,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "เลย",
+    "patient": 1156,
+    "patient_rate": 183.267,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "สกลนคร",
+    "patient": 964,
+    "patient_rate": 84.876,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "สกลนคร",
+    "patient": 1598,
+    "patient_rate": 140.696,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "สกลนคร",
+    "patient": 1128,
+    "patient_rate": 99.315,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "สกลนคร",
+    "patient": 1119,
+    "patient_rate": 98.523,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "หนองคาย",
+    "patient": 1993,
+    "patient_rate": 390.084,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "หนองคาย",
+    "patient": 1954,
+    "patient_rate": 382.45,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "หนองคาย",
+    "patient": 1577,
+    "patient_rate": 308.661,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "หนองคาย",
+    "patient": 1369,
+    "patient_rate": 267.95,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "หนองบัวลำภู",
+    "patient": 1312,
+    "patient_rate": 260.847,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "หนองบัวลำภู",
+    "patient": 860,
+    "patient_rate": 170.982,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "หนองบัวลำภู",
+    "patient": 1379,
+    "patient_rate": 274.168,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "หนองบัวลำภู",
+    "patient": 1137,
+    "patient_rate": 226.054,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "อุดรธานี",
+    "patient": 3035,
+    "patient_rate": 195.9,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "อุดรธานี",
+    "patient": 1996,
+    "patient_rate": 128.836,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "อุดรธานี",
+    "patient": 3106,
+    "patient_rate": 200.483,
+    "dead": 1,
+    "dead_rate": 0.065,
+    "cfr": 0.032,
+    "year": 2027
+  },
+  {
+    "province": "อุดรธานี",
+    "patient": 2780,
+    "patient_rate": 179.441,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ชัยภูมิ",
+    "patient": 2874,
+    "patient_rate": 260.531,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ชัยภูมิ",
+    "patient": 2647,
+    "patient_rate": 239.954,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ชัยภูมิ",
+    "patient": 2110,
+    "patient_rate": 191.274,
+    "dead": 1,
+    "dead_rate": 0.091,
+    "cfr": 0.047,
+    "year": 2027
+  },
+  {
+    "province": "ชัยภูมิ",
+    "patient": 1933,
+    "patient_rate": 175.229,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "นครราชสีมา",
+    "patient": 9281,
+    "patient_rate": 354.842,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "นครราชสีมา",
+    "patient": 10098,
+    "patient_rate": 386.078,
+    "dead": 1,
+    "dead_rate": 0.038,
+    "cfr": 0.01,
+    "year": 2026
+  },
+  {
+    "province": "นครราชสีมา",
+    "patient": 6667,
+    "patient_rate": 254.9,
+    "dead": 1,
+    "dead_rate": 0.038,
+    "cfr": 0.015,
+    "year": 2027
+  },
+  {
+    "province": "นครราชสีมา",
+    "patient": 9120,
+    "patient_rate": 348.686,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "บุรีรัมย์",
+    "patient": 2135,
+    "patient_rate": 136.608,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "บุรีรัมย์",
+    "patient": 3107,
+    "patient_rate": 198.801,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "บุรีรัมย์",
+    "patient": 2963,
+    "patient_rate": 189.587,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "บุรีรัมย์",
+    "patient": 3152,
+    "patient_rate": 201.68,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "สุรินทร์",
+    "patient": 2969,
+    "patient_rate": 218.775,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "สุรินทร์",
+    "patient": 2763,
+    "patient_rate": 203.596,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "สุรินทร์",
+    "patient": 2583,
+    "patient_rate": 190.332,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "สุรินทร์",
+    "patient": 3431,
+    "patient_rate": 252.818,
+    "dead": 2,
+    "dead_rate": 0.147,
+    "cfr": 0.058,
+    "year": 2028
+  },
+  {
+    "province": "มุกดาหาร",
+    "patient": 1182,
+    "patient_rate": 337.612,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "มุกดาหาร",
+    "patient": 842,
+    "patient_rate": 240.498,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "มุกดาหาร",
+    "patient": 819,
+    "patient_rate": 233.929,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "มุกดาหาร",
+    "patient": 1239,
+    "patient_rate": 353.892,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ยโสธร",
+    "patient": 1835,
+    "patient_rate": 350.273,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ยโสธร",
+    "patient": 2349,
+    "patient_rate": 448.388,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ยโสธร",
+    "patient": 2383,
+    "patient_rate": 454.878,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ยโสธร",
+    "patient": 1499,
+    "patient_rate": 286.136,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ศรีสะเกษ",
+    "patient": 3015,
+    "patient_rate": 209.48,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ศรีสะเกษ",
+    "patient": 2479,
+    "patient_rate": 172.239,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ศรีสะเกษ",
+    "patient": 3254,
+    "patient_rate": 226.086,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ศรีสะเกษ",
+    "patient": 2436,
+    "patient_rate": 169.252,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "อำนาจเจริญ",
+    "patient": 1544,
+    "patient_rate": 415.837,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "อำนาจเจริญ",
+    "patient": 1242,
+    "patient_rate": 334.501,
+    "dead": 1,
+    "dead_rate": 0.269,
+    "cfr": 0.081,
+    "year": 2026
+  },
+  {
+    "province": "อำนาจเจริญ",
+    "patient": 1378,
+    "patient_rate": 371.129,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "อำนาจเจริญ",
+    "patient": 913,
+    "patient_rate": 245.893,
+    "dead": 1,
+    "dead_rate": 0.269,
+    "cfr": 0.11,
+    "year": 2028
+  },
+  {
+    "province": "อุบลราชธานี",
+    "patient": 7264,
+    "patient_rate": 389.237,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "อุบลราชธานี",
+    "patient": 11089,
+    "patient_rate": 594.197,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "อุบลราชธานี",
+    "patient": 9566,
+    "patient_rate": 512.588,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "อุบลราชธานี",
+    "patient": 11046,
+    "patient_rate": 591.892,
+    "dead": 2,
+    "dead_rate": 0.107,
+    "cfr": 0.018,
+    "year": 2028
+  },
+  {
+    "province": "กระบี่",
+    "patient": 788,
+    "patient_rate": 162.736,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "กระบี่",
+    "patient": 843,
+    "patient_rate": 174.094,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "กระบี่",
+    "patient": 673,
+    "patient_rate": 138.986,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "กระบี่",
+    "patient": 594,
+    "patient_rate": 122.671,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ชุมพร",
+    "patient": 1217,
+    "patient_rate": 239.816,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ชุมพร",
+    "patient": 924,
+    "patient_rate": 182.079,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ชุมพร",
+    "patient": 1361,
+    "patient_rate": 268.192,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ชุมพร",
+    "patient": 975,
+    "patient_rate": 192.129,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "นครศรีธรรมราช",
+    "patient": 3248,
+    "patient_rate": 211.949,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "นครศรีธรรมราช",
+    "patient": 5621,
+    "patient_rate": 366.799,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "นครศรีธรรมราช",
+    "patient": 3978,
+    "patient_rate": 259.585,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "นครศรีธรรมราช",
+    "patient": 3274,
+    "patient_rate": 213.645,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "พังงา",
+    "patient": 458,
+    "patient_rate": 172.234,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "พังงา",
+    "patient": 285,
+    "patient_rate": 107.176,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "พังงา",
+    "patient": 436,
+    "patient_rate": 163.961,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "พังงา",
+    "patient": 492,
+    "patient_rate": 185.02,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ภูเก็ต",
+    "patient": 1582,
+    "patient_rate": 366.396,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ภูเก็ต",
+    "patient": 1879,
+    "patient_rate": 435.182,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ภูเก็ต",
+    "patient": 2213,
+    "patient_rate": 512.537,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ภูเก็ต",
+    "patient": 2156,
+    "patient_rate": 499.335,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ระนอง",
+    "patient": 64,
+    "patient_rate": 33.208,
+    "dead": 2,
+    "dead_rate": 1.038,
+    "cfr": 3.125,
+    "year": 2025
+  },
+  {
+    "province": "ระนอง",
+    "patient": 92,
+    "patient_rate": 47.737,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ระนอง",
+    "patient": 91,
+    "patient_rate": 47.218,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ระนอง",
+    "patient": 83,
+    "patient_rate": 43.067,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "สุราษฎร์ธานี",
+    "patient": 3067,
+    "patient_rate": 285.087,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "สุราษฎร์ธานี",
+    "patient": 2725,
+    "patient_rate": 253.297,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "สุราษฎร์ธานี",
+    "patient": 2897,
+    "patient_rate": 269.285,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "สุราษฎร์ธานี",
+    "patient": 3038,
+    "patient_rate": 282.391,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ตรัง",
+    "patient": 313,
+    "patient_rate": 49.369,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ตรัง",
+    "patient": 344,
+    "patient_rate": 54.259,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ตรัง",
+    "patient": 387,
+    "patient_rate": 61.041,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ตรัง",
+    "patient": 359,
+    "patient_rate": 56.625,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "นราธิวาส",
+    "patient": 645,
+    "patient_rate": 78.064,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "นราธิวาส",
+    "patient": 622,
+    "patient_rate": 75.28,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "นราธิวาส",
+    "patient": 604,
+    "patient_rate": 73.102,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "นราธิวาส",
+    "patient": 758,
+    "patient_rate": 91.74,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ปัตตานี",
+    "patient": 346,
+    "patient_rate": 46.568,
+    "dead": 1,
+    "dead_rate": 0.135,
+    "cfr": 0.289,
+    "year": 2025
+  },
+  {
+    "province": "ปัตตานี",
+    "patient": 494,
+    "patient_rate": 66.488,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ปัตตานี",
+    "patient": 495,
+    "patient_rate": 66.623,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ปัตตานี",
+    "patient": 457,
+    "patient_rate": 61.508,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "พัทลุง",
+    "patient": 1240,
+    "patient_rate": 238.96,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "พัทลุง",
+    "patient": 861,
+    "patient_rate": 165.923,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "พัทลุง",
+    "patient": 1049,
+    "patient_rate": 202.152,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "พัทลุง",
+    "patient": 1514,
+    "patient_rate": 291.762,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ยะลา",
+    "patient": 349,
+    "patient_rate": 63.039,
+    "dead": 2,
+    "dead_rate": 0.361,
+    "cfr": 0.573,
+    "year": 2025
+  },
+  {
+    "province": "ยะลา",
+    "patient": 400,
+    "patient_rate": 72.251,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ยะลา",
+    "patient": 415,
+    "patient_rate": 74.96,
+    "dead": 1,
+    "dead_rate": 0.181,
+    "cfr": 0.241,
+    "year": 2027
+  },
+  {
+    "province": "ยะลา",
+    "patient": 269,
+    "patient_rate": 48.589,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "สงขลา",
+    "patient": 2850,
+    "patient_rate": 199.297,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "สงขลา",
+    "patient": 1969,
+    "patient_rate": 137.69,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "สงขลา",
+    "patient": 2093,
+    "patient_rate": 146.361,
+    "dead": 2,
+    "dead_rate": 0.14,
+    "cfr": 0.096,
+    "year": 2027
+  },
+  {
+    "province": "สงขลา",
+    "patient": 3000,
+    "patient_rate": 209.786,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "สตูล",
+    "patient": 185,
+    "patient_rate": 56.974,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "สตูล",
+    "patient": 329,
+    "patient_rate": 101.321,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "สตูล",
+    "patient": 276,
+    "patient_rate": 84.999,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "สตูล",
+    "patient": 224,
+    "patient_rate": 68.984,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "กรุงเทพมหานคร",
+    "patient": 33140,
+    "patient_rate": 609.465,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "กรุงเทพมหานคร",
+    "patient": 27892,
+    "patient_rate": 512.951,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "กรุงเทพมหานคร",
+    "patient": 29911,
+    "patient_rate": 550.082,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "กรุงเทพมหานคร",
+    "patient": 32673,
+    "patient_rate": 600.877,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
+  },
+  {
+    "province": "ไม่ระบุ",
+    "patient": 149,
+    "patient_rate": 0,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2025
+  },
+  {
+    "province": "ไม่ระบุ",
+    "patient": 170,
+    "patient_rate": 0,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2026
+  },
+  {
+    "province": "ไม่ระบุ",
+    "patient": 115,
+    "patient_rate": 0,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2027
+  },
+  {
+    "province": "ไม่ระบุ",
+    "patient": 163,
+    "patient_rate": 0,
+    "dead": 0,
+    "dead_rate": 0,
+    "cfr": 0,
+    "year": 2028
   }
 ]
