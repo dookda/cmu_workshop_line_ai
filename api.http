@@ -11,4 +11,6 @@ GET {{host}}/api/provinces?year=2026
 
 ### Look up a single province by query param for a specific year
 GET {{host}}/api/provinces?province=เชียงราย&year=2026
-# GET {{host}}/api/provinces?province=เชียงราย
+
+### Look up a single province by path param
+GET {{host}}/api/provinces/เชียงราย

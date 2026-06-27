@@ -282,7 +282,37 @@ curl http://localhost:3000/health
 curl "http://localhost:3000/api/provinces?year=2026&field=patient_rate&min=300"
 ```
 
-> มีไฟล์ `api.http` ในโปรเจกต์ไว้ยิง request พวกนี้ผ่าน REST Client extension ของ VS Code ได้เลย
+### ทดสอบด้วย REST Client extension (แทน curl)
+
+ติดตั้ง extension **[REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)** ใน VS Code (ถ้ายังไม่ได้ลงตอนขั้นตอนที่ 1) แล้วสร้างไฟล์ `api.http` ที่ root ของโปรเจกต์ copy เนื้อหานี้ไปวาง:
+
+```http
+@host = http://localhost:3000
+
+### Health check
+GET {{host}}/health
+
+### List provinces filtered by field + range
+GET {{host}}/api/provinces?field=patient_rate&min=500
+
+### List provinces for a specific year
+GET {{host}}/api/provinces?year=2026
+
+### Look up a single province by query param for a specific year
+GET {{host}}/api/provinces?province=เชียงราย&year=2026
+
+### Look up a single province by path param
+GET {{host}}/api/provinces/เชียงราย
+```
+
+วิธีใช้:
+
+1. รัน `npm run dev` ให้ server ทำงานอยู่ที่ `localhost:3000` ก่อน
+2. เปิดไฟล์ `api.http` ใน VS Code — เหนือแต่ละ request (บรรทัด `GET ...`) จะมีลิงก์เล็กๆ เขียนว่า **Send Request** ปรากฏขึ้นมา (CodeLens)
+3. คลิก **Send Request** ที่ request ที่ต้องการทดสอบ — VS Code จะเปิดแท็บผลลัพธ์ (status code, headers, JSON response) ขึ้นมาด้านข้างให้ทันที ไม่ต้องพิมพ์คำสั่งใน terminal
+4. แก้ query string ในไฟล์แล้วกด **Send Request** ใหม่ได้เรื่อยๆ เพื่อลองพารามิเตอร์อื่น (เช่นเปลี่ยน `min=500` เป็นค่าอื่น)
+
+> ตัวแปร `@host` ที่หัวไฟล์ช่วยให้สลับไปยิงกับ server จริง (เช่น URL หลัง deploy) ได้โดยแก้ค่าเดียว ไม่ต้องแก้ทุก request
 
 ---
 
