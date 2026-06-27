@@ -1,6 +1,6 @@
 // core.js — province statistics domain logic + LINE messaging
 import { readFileSync } from 'fs';
-import { createHmac } from 'crypto';
+import { createHmac, timingSafeEqual } from 'crypto';
 import * as line from '@line/bot-sdk';
 import OpenAI from 'openai';
 
@@ -228,8 +228,9 @@ export class LineService {
         if (PICK_PROVINCE_KEYWORDS.includes(normalized)) return provinceListFlex();
         if (AI_KEYWORDS.includes(normalized)) return textReply(AI_PROMPT);
 
-        const aiQuery = parseAiQuery(text);
-        if (aiQuery) {
+        if (matchPrefixed(text, AI_KEYWORDS) !== null) {
+            const aiQuery = parseAiQuery(text);
+            if (!aiQuery) return textReply(AI_PROMPT);
             const record = this.provinceStats.findByProvince(aiQuery.province, aiQuery.year);
             if (!record || Array.isArray(record)) {
                 return textReply(`ไม่พบข้อมูลจังหวัด "${aiQuery.province}" ปี ${aiQuery.year}\n\n${AI_PROMPT}`);
@@ -282,6 +283,7 @@ export class LineService {
 // Signature validation
 // ---------------------------------------------------------------------------
 export function validSignature(rawBody, signature, secret) {
-    const expected = createHmac('sha256', secret).update(rawBody).digest('base64');
-    return expected === signature;
+    const expected = Buffer.from(createHmac('sha256', secret).update(rawBody).digest('base64'));
+    const actual = Buffer.from(signature);
+    return expected.length === actual.length && timingSafeEqual(expected, actual);
 }

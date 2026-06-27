@@ -31,14 +31,18 @@ router.get('/health', (_req, res) => {
     res.json({ status: 'ok', service: 'healthline-ai' });
 });
 
+// Sends a single province's record(s), or 404 if no province matches `name`.
+// (findByProvince returns one record when `year` is given, or all years when omitted.)
+function sendProvince(res, provinceStats, name, year) {
+    const match = provinceStats.findByProvince(name, year);
+    return match ? res.json(match) : res.status(404).json({ error: 'province not found' });
+}
+
 router.get('/api/provinces', (req, res) => {
     const { province, field, min, max, year } = req.query;
     const { provinceStats } = services();
     const parsedYear = year !== undefined ? Number(year) : undefined;
-    if (province) {
-        const match = provinceStats.findByProvince(String(province), parsedYear);
-        return match ? res.json(match) : res.status(404).json({ error: 'province not found' });
-    }
+    if (province) return sendProvince(res, provinceStats, String(province), parsedYear);
     res.json(provinceStats.query({
         field,
         min: min !== undefined ? Number(min) : undefined,
@@ -50,8 +54,7 @@ router.get('/api/provinces', (req, res) => {
 router.get('/api/provinces/:province', (req, res) => {
     const { provinceStats } = services();
     const { year } = req.query;
-    const match = provinceStats.findByProvince(req.params.province, year !== undefined ? Number(year) : undefined);
-    return match ? res.json(match) : res.status(404).json({ error: 'province not found' });
+    sendProvince(res, provinceStats, req.params.province, year !== undefined ? Number(year) : undefined);
 });
 
 router.post('/webhook', express.raw({ type: '*/*' }), async (req, res) => {
@@ -60,14 +63,23 @@ router.post('/webhook', express.raw({ type: '*/*' }), async (req, res) => {
     if (!LINE_CHANNEL_SECRET || !validSignature(rawBody, signature, LINE_CHANNEL_SECRET)) {
         return res.status(400).send('Bad Request');
     }
-    const payload = JSON.parse(rawBody.toString('utf-8'));
+    let payload;
+    try {
+        payload = JSON.parse(rawBody.toString('utf-8'));
+    } catch {
+        return res.status(400).send('Bad Request');
+    }
     const { line } = services();
-    for (const event of payload.events || []) {
-        if (event.type === 'message' && event.message?.type === 'text') {
-            await line.reply(event.replyToken, await line.respond(event.message.text));
-        } else if (event.type === 'follow') {
-            await line.reply(event.replyToken, await line.respond('เมนู'));
+    try {
+        for (const event of payload.events || []) {
+            if (event.type === 'message' && event.message?.type === 'text') {
+                await line.reply(event.replyToken, await line.respond(event.message.text));
+            } else if (event.type === 'follow') {
+                await line.reply(event.replyToken, await line.respond('เมนู'));
+            }
         }
+    } catch (err) {
+        console.error('webhook event handling failed', err);
     }
     res.send('OK');
 });
