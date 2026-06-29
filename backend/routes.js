@@ -1,3 +1,4 @@
+// [R1] import package และ core logic
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
@@ -5,6 +6,7 @@ import { ProvinceStatsRepository, LineService, validSignature } from './core.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// [R2] อ่านค่า environment จาก .env
 const {
     LINE_CHANNEL_SECRET = '',
     LINE_CHANNEL_ACCESS_TOKEN = '',
@@ -12,7 +14,7 @@ const {
     OPENAI_MODEL = 'gpt-4.1-mini',
 } = process.env;
 
-// Lazy-initialised services (created once on first request)
+// [R3] สร้าง service ที่ route ต้องใช้
 let _services = null;
 function services() {
     if (!_services) {
@@ -25,19 +27,20 @@ function services() {
     return _services;
 }
 
+// [R4] สร้าง router และ health check
 const router = express.Router();
 
 router.get('/health', (_req, res) => {
     res.json({ status: 'ok', service: 'healthline-ai' });
 });
 
-// Sends a single province's record(s), or 404 if no province matches `name`.
-// (findByProvince returns one record when `year` is given, or all years when omitted.)
+// [R5] helper สำหรับส่งข้อมูลจังหวัด
 function sendProvince(res, provinceStats, name, year) {
     const match = provinceStats.findByProvince(name, year);
     return match ? res.json(match) : res.status(404).json({ error: 'province not found' });
 }
 
+// [R6] API routes สำหรับทดสอบข้อมูลจังหวัด
 router.get('/api/provinces', (req, res) => {
     const { province, field, min, max, year } = req.query;
     const { provinceStats } = services();
@@ -57,6 +60,7 @@ router.get('/api/provinces/:province', (req, res) => {
     sendProvince(res, provinceStats, req.params.province, year !== undefined ? Number(year) : undefined);
 });
 
+// [R7] LINE webhook route
 router.post('/webhook', express.raw({ type: '*/*' }), async (req, res) => {
     const rawBody = req.body;
     const signature = req.headers['x-line-signature'] || '';

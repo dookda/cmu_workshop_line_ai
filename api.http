@@ -1,29 +1,32 @@
-@host = http://localhost:3001
+@host = http://localhost:3000
 @lineSignature = paste-generated-signature-here
 
-### Health check
+### [R4] Health check
 GET {{host}}/health
 
-### List provinces filtered by field + range
+### [R6] List provinces filtered by field + range
 GET {{host}}/api/provinces?field=patient_rate&min=500
 
-### List provinces for a specific year
+### [R6] List provinces for a specific year
 GET {{host}}/api/provinces?year=2026
 
-### Look up a single province by query param for a specific year
+### [R6] Look up a single province by query param for a specific year
 GET {{host}}/api/provinces?province=เชียงราย&year=2026
 
-### Look up a single province by path param
+### [R6] Look up a single province by path param
 GET {{host}}/api/provinces/เชียงราย
 
-### LINE webhook signature test
+### [R6] Province not found
+GET {{host}}/api/provinces?province=ไม่มีจังหวัดนี้&year=2026
+
+### [R7] LINE webhook signature test
 POST {{host}}/webhook
 Content-Type: application/json
 x-line-signature: {{lineSignature}}
 
 {"events":[]}
 
-### LINE webhook invalid signature test
+### [R7] LINE webhook invalid signature test
 POST {{host}}/webhook
 Content-Type: application/json
 x-line-signature: wrong-signature
