@@ -1,13 +1,18 @@
-// core.js — province statistics domain logic + LINE messaging
+// core.js — simple province stats + LINE bot features
 import { readFileSync } from 'fs';
 import { createHmac, timingSafeEqual } from 'crypto';
 import * as line from '@line/bot-sdk';
 import OpenAI from 'openai';
 
-// ---------------------------------------------------------------------------
-// Province statistics (converted from assets/stat.xlsx)
-// ---------------------------------------------------------------------------
-const PROVINCE_RATE_FIELDS = ['patient', 'patient_rate', 'dead', 'dead_rate', 'cfr'];
+const RATE_FIELDS = ['patient', 'patient_rate', 'dead', 'dead_rate', 'cfr'];
+const FEATURE_TEXT =
+    'เลือกเมนูจาก Rich Menu หรือพิมพ์:\n' +
+    '- สรุปข้อมูล เชียงราย\n' +
+    '- กรองข้อมูล\n' +
+    '- AI เชียงราย 2026';
+const CHART_PROMPT = 'พิมพ์ "สรุปข้อมูล ชื่อจังหวัด" เช่น "สรุปข้อมูล เชียงราย"';
+const AI_PROMPT = 'พิมพ์ "AI ชื่อจังหวัด ปี" เช่น "AI เชียงราย 2026"';
+const QUICK_PROVINCES = ['เชียงราย', 'เชียงใหม่', 'กรุงเทพมหานคร', 'ชลบุรี', 'นครราชสีมา', 'ขอนแก่น'];
 
 export class ProvinceStatsRepository {
     constructor(path) {
@@ -16,41 +21,29 @@ export class ProvinceStatsRepository {
     }
 
     findByProvince(name, year) {
-        const normalized = name.trim().toLowerCase();
+        const keyword = name.trim().toLowerCase();
         const matches = this.items
-            .filter(item => item.province.toLowerCase().includes(normalized) && (year === undefined || item.year === year))
+            .filter(item => item.province.toLowerCase().includes(keyword))
+            .filter(item => year === undefined || item.year === year)
             .sort((a, b) => a.year - b.year);
         if (!matches.length) return null;
         return year === undefined ? matches : matches[0];
     }
 
+    yearsByProvince(name) {
+        const records = this.findByProvince(name);
+        return records ? records.map(item => item.year) : [];
+    }
+
     query({ field = 'patient_rate', min, max, year = this.defaultYear } = {}) {
-        const rateField = PROVINCE_RATE_FIELDS.includes(field) ? field : 'patient_rate';
+        const rateField = RATE_FIELDS.includes(field) ? field : 'patient_rate';
         return this.items
             .filter(item => item.year === year)
-            .filter(item => (min === undefined || item[rateField] >= min) && (max === undefined || item[rateField] <= max))
+            .filter(item => min === undefined || item[rateField] >= min)
+            .filter(item => max === undefined || item[rateField] <= max)
             .sort((a, b) => b[rateField] - a[rateField]);
     }
 }
-
-// ---------------------------------------------------------------------------
-// LINE chatbot — lets users look up province stats by chatting
-// ---------------------------------------------------------------------------
-const HELP_TEXT =
-    'พิมพ์ชื่อจังหวัด เพื่อดูข้อมูลผู้ป่วยทุกปีที่มี เช่น "เชียงราย"\n' +
-    'หรือพิมพ์ชื่อจังหวัดตามด้วยปี เพื่อดูข้อมูลปีนั้น เช่น "เชียงราย 2026"\n' +
-    'หรือพิมพ์ "สรุปข้อมูล ชื่อจังหวัด" เพื่อดูกราฟสรุป เช่น "สรุปข้อมูล เชียงราย"\n' +
-    'หรือพิมพ์ "เลือกจังหวัด" เพื่อเลือกจังหวัดและปีจากเมนู\n' +
-    'หรือพิมพ์ "ai ชื่อจังหวัด ปี" ให้ AI อธิบายข้อมูลเป็นภาษาที่เข้าใจง่าย เช่น "ai เชียงราย 2026"';
-const CHART_PROMPT = 'พิมพ์ชื่อจังหวัดที่ต้องการดูกราฟสรุปข้อมูล เช่น "สรุปข้อมูล เชียงราย"';
-const CHART_KEYWORDS = ['สรุปข้อมูล', 'chart', 'summary'];
-const PICK_PROVINCE_KEYWORDS = ['เลือกจังหวัด', 'กรองข้อมูล', 'pick', 'filter'];
-const PICK_YEAR_PREFIX = 'เลือกปี';
-const CURATED_PROVINCES = ['เชียงราย', 'เชียงใหม่', 'กรุงเทพมหานคร', 'ชลบุรี', 'นครราชสีมา', 'ขอนแก่น'];
-const ALL_YEARS_LABEL = 'ทุกปี';
-const YEAR_CHOICES = [2025, 2026, 2027, 2028, 2029];
-const AI_KEYWORDS = ['ai', 'ถามai', 'ถาม ai'];
-const AI_PROMPT = 'พิมพ์ "ai ชื่อจังหวัด ปี" เพื่อให้ AI อธิบายข้อมูลเป็นภาษาที่เข้าใจง่าย เช่น "ai เชียงราย 2026"';
 
 function textReply(text) {
     return { type: 'text', text };
@@ -63,75 +56,25 @@ function formatRecord({ province, year, patient, patient_rate, dead, dead_rate, 
         `CFR: ${cfr}%`;
 }
 
-function formatRecords(records) {
-    const province = records[0].province;
-    const lines = records.map(r => `ปี ${r.year}: ผู้ป่วย ${r.patient.toLocaleString()} คน (อัตรา ${r.patient_rate})`);
-    return `จังหวัด${province}\n${lines.join('\n')}`;
-}
-
-function parseQuery(text) {
+function parseProvinceYear(text) {
     const match = text.trim().match(/^(.+?)\s+(\d{4})$/);
-    if (match) return { province: match[1].trim(), year: Number(match[2]) };
-    return { province: text.trim(), year: undefined };
-}
-
-// Matches "<keyword> <rest>" and returns <rest>, or null if the text doesn't start with one of the keywords.
-function matchPrefixed(text, keywords) {
-    const match = text.trim().match(new RegExp(`^(?:${keywords.join('|')})\\s+(.+)$`, 'i'));
-    return match ? match[1].trim() : null;
-}
-
-function parseChartQuery(text) {
-    const rest = matchPrefixed(text, CHART_KEYWORDS);
-    // Chart always plots the full multi-year trend, so drop any trailing year
-    // (e.g. "สรุปข้อมูล เชียงราย 2026") instead of treating it as part of the name.
-    return rest ? rest.replace(/\s+\d{4}$/, '') : null;
-}
-
-function parseAiQuery(text) {
-    const rest = matchPrefixed(text, AI_KEYWORDS);
-    const match = rest && rest.match(/^(.+?)\s+(\d{4})$/);
     return match ? { province: match[1].trim(), year: Number(match[2]) } : null;
 }
 
-async function aiExplain(record, { apiKey, model }) {
-    const fallback = formatRecord(record);
-    if (!apiKey) return fallback;
-    try {
-        const client = new OpenAI({ apiKey, fetch: globalThis.fetch });
-        const response = await client.responses.create({
-            model,
-            instructions:
-                'คุณคือผู้ช่วยอธิบายสถิติโรคติดต่อภาษาไทย ใช้เฉพาะข้อมูลที่ให้มาเท่านั้น ' +
-                'อธิบายเป็นประโยคสั้นๆ 1-2 ประโยค ภาษาที่เข้าใจง่าย ห้ามแต่งตัวเลขเพิ่มหรือวินิจฉัยใดๆ ' +
-                'ใช้ปี ค.ศ. ตามที่ระบุไว้เป๊ะๆ ห้ามแปลงเป็นปี พ.ศ. หรือเปลี่ยนตัวเลขปี',
-            input:
-                `ข้อมูล: จังหวัด${record.province} ปี ${record.year} ผู้ป่วย ${record.patient} คน ` +
-                `(อัตรา ${record.patient_rate} ต่อแสนประชากร) เสียชีวิต ${record.dead} คน (อัตรา ${record.dead_rate}) CFR ${record.cfr}%`,
-        });
-        return response.output_text.trim();
-    } catch (err) {
-        console.error('OpenAI request failed; using local fallback', err.message);
-        return fallback;
-    }
+function afterPrefix(text, prefix) {
+    return text.startsWith(`${prefix} `) ? text.slice(prefix.length).trim() : null;
 }
 
-// ---------------------------------------------------------------------------
-// Chart image rendering (via QuickChart's hosted Chart.js renderer)
-// ---------------------------------------------------------------------------
-function provinceChartImage(records) {
+function chartImage(records) {
     const province = records[0].province;
     const config = {
         type: 'bar',
         data: {
-            labels: records.map(r => String(r.year)),
-            datasets: [{ label: 'ผู้ป่วย (คน)', data: records.map(r => r.patient), backgroundColor: '#20A475' }],
+            labels: records.map(item => String(item.year)),
+            datasets: [{ label: 'ผู้ป่วย (คน)', data: records.map(item => item.patient), backgroundColor: '#20A475' }],
         },
         options: {
-            plugins: {
-                title: { display: true, text: `สรุปข้อมูลจังหวัด${province}` },
-                legend: { display: false },
-            },
+            plugins: { title: { display: true, text: `สรุปข้อมูลจังหวัด${province}` }, legend: { display: false } },
             scales: { y: { beginAtZero: true } },
         },
     };
@@ -140,22 +83,21 @@ function provinceChartImage(records) {
         type: 'image',
         originalContentUrl: url,
         previewImageUrl: url,
-        altText: `สรุปข้อมูลจังหวัด${province}`,
         caption: `สรุปข้อมูลจังหวัด${province} (${records[0].year}-${records[records.length - 1].year})`,
     };
 }
 
-// ---------------------------------------------------------------------------
-// Flex messages — main menu + pickers
-// ---------------------------------------------------------------------------
 function flex(altText, contents) {
     return { type: 'flex', altText, contents };
 }
 
-function actionRow(label, text, color) {
+function button(label, text, color) {
     return {
-        type: 'box', layout: 'horizontal', backgroundColor: color,
-        cornerRadius: '10px', paddingAll: '14px',
+        type: 'box',
+        layout: 'horizontal',
+        backgroundColor: color,
+        cornerRadius: '10px',
+        paddingAll: '14px',
         action: { type: 'message', label, text },
         contents: [
             { type: 'text', text: label, weight: 'bold', color: '#173F35' },
@@ -167,121 +109,127 @@ function actionRow(label, text, color) {
 export function menuFlex() {
     return flex('เมนู HealthLine Stats', {
         type: 'bubble',
-        styles: { header: { backgroundColor: '#0C5C4C' } },
-        header: {
-            type: 'box', layout: 'vertical', paddingAll: '20px', contents: [
-                { type: 'text', text: 'HEALTHLINE STATS', color: '#BDF5D8', size: 'xs', weight: 'bold' },
-                { type: 'text', text: 'สถิติผู้ป่วยรายจังหวัด', color: '#FFFFFF', size: 'xl', weight: 'bold', margin: 'sm' },
-            ],
-        },
         body: {
-            type: 'box', layout: 'vertical', spacing: 'md', contents: [
-                { type: 'text', text: 'เลือกหัวข้อ หรือพิมพ์ชื่อจังหวัดได้เลย', wrap: true, color: '#40544D' },
-                actionRow('เลือกจังหวัด', 'เลือกจังหวัด', '#E7F7EE'),
-                actionRow('สรุปข้อมูล', 'สรุปข้อมูล', '#FFF0D9'),
-                actionRow('ถาม AI', 'ai', '#E9F0FF'),
+            type: 'box',
+            layout: 'vertical',
+            spacing: 'md',
+            contents: [
+                { type: 'text', text: 'HealthLine Stats', weight: 'bold', size: 'xl', color: '#0C5C4C' },
+                button('สรุปข้อมูล', 'สรุปข้อมูล', '#FFE0C2'),
+                button('กรองข้อมูล', 'กรองข้อมูล', '#CFF6DF'),
+                button('AI', 'AI', '#D7F0FF'),
             ],
         },
     });
 }
 
-function listFlex(title, subtitle, rows) {
+function listFlex(title, rows) {
     return flex(title, {
         type: 'bubble',
-        header: {
-            type: 'box', layout: 'vertical', contents: [
-                { type: 'text', text: title, size: 'xl', weight: 'bold', color: '#0C5C4C' },
-                { type: 'text', text: subtitle, size: 'xs', color: '#40544D', margin: 'sm' },
-            ],
-        },
         body: { type: 'box', layout: 'vertical', spacing: 'sm', contents: rows },
     });
 }
 
-export function provinceListFlex() {
-    const rows = CURATED_PROVINCES.map(province =>
-        actionRow(province, `${PICK_YEAR_PREFIX} ${province}`, '#E7F7EE'));
-    return listFlex('เลือกจังหวัด', 'หรือพิมพ์ชื่อจังหวัดอื่นได้เลย', rows);
+function provinceListFlex() {
+    return listFlex('กรองข้อมูล', QUICK_PROVINCES.map(province =>
+        button(province, `เลือกปี ${province}`, '#CFF6DF')));
 }
 
-export function yearListFlex(province) {
-    const rows = [
-        ...YEAR_CHOICES.map(year => actionRow(String(year), `${province} ${year}`, '#FFF6EA')),
-        actionRow(ALL_YEARS_LABEL, province, '#E9F0FF'),
-    ];
-    return listFlex('เลือกปี', `จังหวัด${province}`, rows);
+function yearListFlex(province, years) {
+    return listFlex(`เลือกปี ${province}`, years.map(year =>
+        button(String(year), `${province} ${year}`, '#FFE8C7')));
 }
 
 export class LineService {
     constructor(accessToken, provinceStats, { apiKey = '', model = 'gpt-4.1-mini' } = {}) {
-        this.accessToken = accessToken;
         this.provinceStats = provinceStats;
-        this.apiKey = apiKey;
         this.model = model;
+        this.lineClient = accessToken ? new line.messagingApi.MessagingApiClient({ channelAccessToken: accessToken }) : null;
+        this.openai = apiKey ? new OpenAI({ apiKey, fetch: globalThis.fetch }) : null;
     }
 
-    async respond(text) {
-        const normalized = text.trim().toLowerCase();
-        if (['เมนู', 'menu'].includes(normalized)) return menuFlex();
-        if (['help', 'ช่วยเหลือ', 'วิธีใช้งาน'].includes(normalized)) return textReply(HELP_TEXT);
-        if (CHART_KEYWORDS.includes(normalized)) return textReply(CHART_PROMPT);
-        if (PICK_PROVINCE_KEYWORDS.includes(normalized)) return provinceListFlex();
-        if (AI_KEYWORDS.includes(normalized)) return textReply(AI_PROMPT);
+    async respond(input) {
+        const text = input.trim();
+        const lower = text.toLowerCase();
 
-        if (matchPrefixed(text, AI_KEYWORDS) !== null) {
-            const aiQuery = parseAiQuery(text);
-            if (!aiQuery) return textReply(AI_PROMPT);
-            const record = this.provinceStats.findByProvince(aiQuery.province, aiQuery.year);
-            if (!record || Array.isArray(record)) {
-                return textReply(`ไม่พบข้อมูลจังหวัด "${aiQuery.province}" ปี ${aiQuery.year}\n\n${AI_PROMPT}`);
-            }
-            return textReply(await aiExplain(record, { apiKey: this.apiKey, model: this.model }));
-        }
+        if (['เมนู', 'menu'].includes(lower)) return menuFlex();
+        if (text === 'สรุปข้อมูล') return textReply(CHART_PROMPT);
+        if (text === 'กรองข้อมูล') return provinceListFlex();
+        if (lower === 'ai') return textReply(AI_PROMPT);
 
-        const pickYearProvince = matchPrefixed(text, [PICK_YEAR_PREFIX]);
-        if (pickYearProvince !== null) {
-            const exists = this.provinceStats.findByProvince(pickYearProvince);
-            if (!exists) return textReply(`ไม่พบข้อมูลจังหวัด "${pickYearProvince}"\n\n${HELP_TEXT}`);
-            return yearListFlex(pickYearProvince);
-        }
+        const chartProvince = afterPrefix(text, 'สรุปข้อมูล');
+        if (chartProvince) return this.chart(chartProvince.replace(/\s+\d{4}$/, ''));
 
-        const chartProvince = parseChartQuery(text);
-        if (chartProvince !== null) {
-            const records = this.provinceStats.findByProvince(chartProvince);
-            if (!records) return textReply(`ไม่พบข้อมูลจังหวัด "${chartProvince}"\n\n${HELP_TEXT}`);
-            return provinceChartImage(records);
-        }
+        const yearProvince = afterPrefix(text, 'เลือกปี');
+        if (yearProvince) return this.yearPicker(yearProvince);
 
-        const { province, year } = parseQuery(text);
-        const result = this.provinceStats.findByProvince(province, year);
-        if (!result) {
-            const suffix = year !== undefined ? ` ปี ${year}` : '';
-            return textReply(`ไม่พบข้อมูลจังหวัด "${province}"${suffix}\n\n${HELP_TEXT}`);
+        if (lower.startsWith('ai ')) return this.ai(text.slice(3).trim());
+
+        const query = parseProvinceYear(text);
+        if (query) return this.record(query.province, query.year);
+
+        return textReply(FEATURE_TEXT);
+    }
+
+    chart(province) {
+        const records = this.provinceStats.findByProvince(province);
+        return records ? chartImage(records) : textReply(`ไม่พบข้อมูลจังหวัด "${province}"`);
+    }
+
+    yearPicker(province) {
+        const years = this.provinceStats.yearsByProvince(province);
+        return years.length ? yearListFlex(province, years) : textReply(`ไม่พบข้อมูลจังหวัด "${province}"`);
+    }
+
+    record(province, year) {
+        const record = this.provinceStats.findByProvince(province, year);
+        return record ? textReply(formatRecord(record)) : textReply(`ไม่พบข้อมูลจังหวัด "${province}" ปี ${year}`);
+    }
+
+    async ai(text) {
+        const query = parseProvinceYear(text);
+        if (!query) return textReply(AI_PROMPT);
+
+        const record = this.provinceStats.findByProvince(query.province, query.year);
+        if (!record) return textReply(`ไม่พบข้อมูลจังหวัด "${query.province}" ปี ${query.year}`);
+        if (!this.openai) return textReply(formatRecord(record));
+
+        try {
+            const response = await this.openai.responses.create({
+                model: this.model,
+                instructions:
+                    'อธิบายสถิติโรคติดต่อภาษาไทยแบบสั้น 1-2 ประโยค ใช้เฉพาะข้อมูลที่ให้มา ห้ามแต่งตัวเลขเพิ่ม และใช้ปี ค.ศ. ตามข้อมูล',
+                input:
+                    `จังหวัด${record.province} ปี ${record.year}: ผู้ป่วย ${record.patient} คน ` +
+                    `อัตราป่วย ${record.patient_rate} ต่อแสนประชากร เสียชีวิต ${record.dead} คน ` +
+                    `อัตราตาย ${record.dead_rate} CFR ${record.cfr}%`,
+            });
+            return textReply(response.output_text.trim());
+        } catch (err) {
+            console.error('OpenAI request failed; using local fallback', err.message);
+            return textReply(formatRecord(record));
         }
-        return textReply(Array.isArray(result) ? formatRecords(result) : formatRecord(result));
     }
 
     async reply(replyToken, payload) {
-        if (!this.accessToken) return;
-        const client = new line.messagingApi.MessagingApiClient({ channelAccessToken: this.accessToken });
+        if (!this.lineClient) return;
+
         let messages;
-        if (payload.type === 'flex') {
-            messages = [{ type: 'flex', altText: payload.altText, contents: payload.contents }];
-        } else if (payload.type === 'image') {
+        if (payload.type === 'image') {
             messages = [
                 { type: 'image', originalContentUrl: payload.originalContentUrl, previewImageUrl: payload.previewImageUrl },
                 { type: 'text', text: payload.caption },
             ];
+        } else if (payload.type === 'flex') {
+            messages = [{ type: 'flex', altText: payload.altText, contents: payload.contents }];
         } else {
             messages = [{ type: 'text', text: payload.text }];
         }
-        await client.replyMessage({ replyToken, messages });
+
+        await this.lineClient.replyMessage({ replyToken, messages });
     }
 }
 
-// ---------------------------------------------------------------------------
-// Signature validation
-// ---------------------------------------------------------------------------
 export function validSignature(rawBody, signature, secret) {
     const expected = Buffer.from(createHmac('sha256', secret).update(rawBody).digest('base64'));
     const actual = Buffer.from(signature);

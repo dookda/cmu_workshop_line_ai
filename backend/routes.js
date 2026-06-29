@@ -72,6 +72,7 @@ router.post('/webhook', express.raw({ type: '*/*' }), async (req, res) => {
     const { line } = services();
     try {
         for (const event of payload.events || []) {
+            if (!event.replyToken) continue;
             if (event.type === 'message' && event.message?.type === 'text') {
                 await line.reply(event.replyToken, await line.respond(event.message.text));
             } else if (event.type === 'follow') {
