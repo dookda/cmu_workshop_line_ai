@@ -125,11 +125,17 @@ ngrok config add-authtoken <YOUR_AUTHTOKEN>
 
 ### 2.1 สร้างโฟลเดอร์โปรเจกต์
 
+```powershell
+# Windows (PowerShell)
+mkdir cmu-healthline-ai; cd cmu-healthline-ai
+```
+
 ```bash
+# macOS / Linux (bash)
 mkdir cmu-healthline-ai && cd cmu-healthline-ai
 ```
 
-**คำอธิบาย**: สร้างโฟลเดอร์เปล่าสำหรับเก็บโค้ดทั้งหมดของโครงการ แล้วเข้าไปอยู่ในโฟลเดอร์นั้นทันที (`cd`) เพื่อให้คำสั่งทั้งหมดในขั้นตอนถัดไปถูกรันอยู่ในตำแหน่งที่ถูกต้องเสมอ
+**คำอธิบาย**: สร้างโฟลเดอร์เปล่าสำหรับเก็บโค้ดทั้งหมดของโครงการ แล้วเข้าไปอยู่ในโฟลเดอร์นั้นทันที (`cd`) เพื่อให้คำสั่งทั้งหมดในขั้นตอนถัดไปถูกรันอยู่ในตำแหน่งที่ถูกต้องเสมอ ใช้ `;` แทน `&&` บน PowerShell รุ่นที่มากับ Windows 10/11 โดยปริยาย (5.1) เนื่องจาก `&&` รองรับเฉพาะ PowerShell 7 ขึ้นไป
 
 ### 2.2 กำหนดค่าโครงการด้วย npm init
 
@@ -204,7 +210,13 @@ OPENAI_MODEL=gpt-4.1-mini
 
 ### 2.6 คัดลอกเป็นไฟล์ .env จริง
 
+```powershell
+# Windows (PowerShell)
+Copy-Item .env.example .env
+```
+
 ```bash
+# macOS / Linux (bash)
 cp .env.example .env
 ```
 
@@ -229,15 +241,37 @@ node_modules/
 
 ### 3.1 สร้างโฟลเดอร์และไฟล์เปล่า
 
+```powershell
+# Windows (PowerShell)
+New-Item -ItemType Directory -Force -Path backend\data, backend\scripts, frontend
+New-Item -ItemType File -Force -Path backend\server.js, backend\core.js, backend\routes.js
+New-Item -ItemType File -Force -Path frontend\index.html, frontend\app.css, frontend\app.js
+```
+
 ```bash
+# macOS / Linux (bash)
 mkdir -p backend/data backend/scripts frontend
 touch backend/server.js backend/core.js backend/routes.js
 touch frontend/index.html frontend/app.css frontend/app.js
 ```
 
-**คำอธิบาย**: `mkdir -p` สร้างโฟลเดอร์ซ้อนกันได้ในคำสั่งเดียว (`backend/data`, `backend/scripts`) ส่วน `touch` สร้างไฟล์เปล่าไว้ก่อน เพื่อให้เห็นโครงสร้างไฟล์ทั้งหมดของโปรเจกต์ตั้งแต่ต้น ก่อนเริ่มเติมเนื้อหาโค้ดในขั้นตอนที่ 4
+**คำอธิบาย**: Windows ไม่มีคำสั่ง `touch` ติดตั้งมาให้โดยกำเนิด (ทั้ง `cmd.exe` และ PowerShell) จึงต้องใช้ `New-Item -ItemType File` แทน ส่วนการสร้างโฟลเดอร์ซ้อนกัน (`backend\data`, `backend\scripts`) ใช้ `New-Item -ItemType Directory -Force` แทน `mkdir -p` ของฝั่ง Unix (flag `-Force` ทำให้ไม่ error หากโฟลเดอร์นั้นมีอยู่แล้ว) เป้าหมายของขั้นตอนนี้คือสร้างไฟล์เปล่าให้เห็นโครงสร้างไฟล์ทั้งหมดของโปรเจกต์ตั้งแต่ต้น ก่อนเริ่มเติมเนื้อหาโค้ดในขั้นตอนที่ 4
 
-**ทดสอบ**: รันคำสั่ง `find backend frontend -type f` ผลลัพธ์ควรตรงกับโครงสร้างไฟล์ดังนี้:
+> หากเครื่อง Windows มี **Git Bash** ติดตั้งอยู่ (มาพร้อมกับ Git for Windows) สามารถเปิด terminal เป็น Git Bash แล้วใช้คำสั่ง `mkdir -p`/`touch` แบบ bash เดิมได้ทันที โดยไม่ต้องแปลงเป็น PowerShell — สะดวกกว่าหากต้องรันคู่มือนี้ทั้งฉบับซึ่งมีคำสั่ง bash ปนอยู่หลายจุด
+
+**ทดสอบ**:
+
+```powershell
+# Windows (PowerShell)
+Get-ChildItem -Recurse -File backend, frontend
+```
+
+```bash
+# macOS / Linux (bash)
+find backend frontend -type f
+```
+
+ผลลัพธ์ควรตรงกับโครงสร้างไฟล์ดังนี้:
 
 ```text
 backend/
@@ -342,16 +376,13 @@ export class ProvinceStatsRepository {
 
 **คำอธิบาย**: คลาสนี้**ไม่รู้จัก** Express หรือ HTTP เลย มีหน้าที่เพียงอ่านไฟล์ JSON เข้าหน่วยความจำครั้งเดียวตอนสร้าง instance (`constructor`) แล้วเปิดฟังก์ชันค้นหา/กรองข้อมูลให้เรียกใช้ การแยกโค้ดส่วนนี้ออกจาก route ทำให้สามารถทดสอบ logic การค้นหาได้โดยไม่ต้องเปิด server เลย
 
-**ทดสอบ**: รันคำสั่งทดลองนี้จาก terminal (ที่ root ของโปรเจกต์) เพื่อเรียกใช้คลาสตรงๆ ก่อนเอาไปผูกกับ route:
+**ทดสอบ**: รันคำสั่งทดลองนี้จาก terminal (ที่ root ของโปรเจกต์) เพื่อเรียกใช้คลาสตรงๆ ก่อนเอาไปผูกกับ route — เขียนเป็นคำสั่งบรรทัดเดียว (ไม่ใช้ backslash ต่อบรรทัดแบบ bash) เพื่อให้รันได้เหมือนกันทั้ง Windows และ macOS/Linux:
 
 ```bash
-node -e "import('./backend/core.js').then(async ({ ProvinceStatsRepository }) => { \
-  const repo = new ProvinceStatsRepository('./backend/data/province_stats.json'); \
-  console.log(repo.findByProvince('เชียงราย', 2026)); \
-});"
+node -e "import('./backend/core.js').then(({ ProvinceStatsRepository }) => { const repo = new ProvinceStatsRepository('./backend/data/province_stats.json'); console.log(repo.findByProvince('เชียงราย', 2026)); });"
 ```
 
-ควรเห็น object ข้อมูลของจังหวัดเชียงรายปี 2026 แสดงผลใน terminal โดยไม่มี error
+คำสั่งนี้รันได้เหมือนกันทั้งใน PowerShell, cmd.exe และ bash เนื่องจากเป็น argument ของ `node -e` เพียงตัวเดียวที่ครอบด้วยเครื่องหมายคำพูดคู่ (`"..."`) โดยไม่มีอักขระต่อบรรทัด (`\` หรือ `` ` ``) ซึ่งแต่ละ shell ตีความต่างกัน ควรเห็น object ข้อมูลของจังหวัดเชียงรายปี 2026 แสดงผลใน terminal โดยไม่มี error
 
 ### 4.4 สร้าง routes.js — เริ่มจาก route เดียว (/health)
 
@@ -385,6 +416,12 @@ curl http://localhost:3000/health
 ```
 
 ควรได้ผลลัพธ์ `{"status":"ok","service":"healthline-ai"}`
+
+> **หมายเหตุสำหรับผู้ใช้ Windows**: คำว่า `curl` ใน PowerShell (ไม่ใช่ cmd.exe) แท้จริงเป็นเพียง **alias ของ `Invoke-WebRequest`** ซึ่งมีรูปแบบผลลัพธ์และพารามิเตอร์ต่างจาก curl ตัวจริงโดยสิ้นเชิง หากต้องการให้พฤติกรรมตรงกับตัวอย่างในคู่มือนี้ทุกประการ ให้เรียกใช้ไฟล์ binary ตัวจริง (มีมาให้แล้วใน Windows 10 ขึ้นไป) แทน:
+>
+> ```powershell
+> curl.exe http://localhost:3000/health
+> ```
 
 ### 4.5 ผูก core.js เข้ากับ routes.js — เพิ่ม /api/provinces
 
@@ -420,7 +457,7 @@ router.get('/api/provinces', (req, res) => {
 
 **คำอธิบาย**: route นี้รองรับ 2 รูปแบบการใช้งานในจุดเดียว — หากมี query `?province=...` จะค้นหาจังหวัดนั้นโดยตรง (ผ่าน `sendProvince`) หากไม่มีจะคืนรายการที่กรอง/เรียงลำดับตาม `field`, `min`, `max`, `year` แทน (ผ่าน `query()`) ค่าทั้งหมดที่มาจาก `req.query` เป็น string เสมอ จึงต้องแปลงเป็น `Number` ก่อนส่งให้เมธอดของ repository ที่คาดหวังค่าตัวเลข
 
-**ทดสอบ**:
+**ทดสอบ** (บน PowerShell ให้ใช้ `curl.exe` แทน `curl` ตามหมายเหตุในขั้นตอนที่ 4.4):
 
 ```bash
 curl "http://localhost:3000/api/provinces?province=เชียงราย&year=2026"
@@ -442,7 +479,7 @@ router.get('/api/provinces/:province', (req, res) => {
 
 **คำอธิบาย**: `req.params.province` มาจากส่วน `:province` ของ path โดยตรง (เช่น `/api/provinces/เชียงราย`) ต่างจาก `req.query.province` ที่มาจาก query string (`?province=เชียงราย`) ในขั้นตอนที่ 4.5 — เป็นการเปิดให้เรียกใช้ได้ทั้งสองรูปแบบ เพื่อความสะดวกของผู้ใช้ API
 
-**ทดสอบ**:
+**ทดสอบ** (บน PowerShell ให้ใช้ `curl.exe` แทน `curl` ตามหมายเหตุในขั้นตอนที่ 4.4):
 
 ```bash
 curl http://localhost:3000/api/provinces/เชียงราย
