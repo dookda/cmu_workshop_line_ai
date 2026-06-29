@@ -1271,21 +1271,54 @@ OK
 
 LINE ต้องเรียก URL แบบ public HTTPS ได้ แต่เครื่อง local ใช้ localhost จึงต้องใช้ tunnel เช่น ngrok หรือ Cloudflare Tunnel
 
-ตัวอย่าง URL ที่ต้องเตรียม:
+ในคู่มือนี้จะใช้ `ngrok` เป็นตัวอย่าง
 
-```text
-https://your-public-url.example/webhook
+เปิด terminal ที่ 1 แล้วรัน server:
+
+```bash
+npm run dev
 ```
 
-นำ URL นี้ไปใส่ใน LINE Developers:
+ควรเห็น URL ของ server:
+
+```text
+http://localhost:3000
+```
+
+จากนั้นเปิด terminal ที่ 2 แล้วรัน ngrok:
+
+```bash
+ngrok http 3000
+```
+
+ngrok จะแสดง URL แบบ HTTPS เช่น:
+
+```text
+https://abcd-1234.ngrok-free.app
+```
+
+ให้นำ URL จาก ngrok มาเติม `/webhook` ต่อท้าย:
+
+```text
+https://abcd-1234.ngrok-free.app/webhook
+```
+
+นำ URL ที่ได้ไปใส่ใน LINE Developers:
 
 1. เปิดหน้า Messaging API channel
 2. ไปที่ Webhook settings
-3. ใส่ Webhook URL เป็น `https://.../webhook`
+3. ใส่ Webhook URL เป็น URL จาก ngrok ที่ลงท้ายด้วย `/webhook`
 4. เปิด `Use webhook`
 5. กด `Verify`
 
 หาก Verify ผ่าน แสดงว่า LINE สามารถส่ง request มาถึง server ได้แล้ว
+
+ข้อควรระวัง:
+
+- ต้องเปิด `npm run dev` ค้างไว้ใน terminal ที่ 1
+- ต้องเปิด `ngrok http 3000` ค้างไว้ใน terminal ที่ 2
+- หากปิด ngrok แล้วเปิดใหม่ URL จะเปลี่ยน ต้องนำ URL ใหม่ไปใส่ใน LINE Developers อีกครั้ง
+- ห้ามใช้ `http://localhost:3000/webhook` ใน LINE Developers เพราะ LINE เรียก localhost ในเครื่องของเราไม่ได้
 
 ### Checkpoint 17: ดู terminal ตอนกด Verify
 
