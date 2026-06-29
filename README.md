@@ -8,6 +8,10 @@
 2. `กรองข้อมูล` เลือกจังหวัด แล้วเลือกปี
 3. `AI` อธิบายข้อมูลที่ query ได้เป็นภาษาไทย
 
+ภาพตัวอย่าง Rich Menu ที่ใช้ใน workshop:
+
+![Rich Menu สำหรับ 3 feature](assets/linerichmenu.jpg)
+
 ## ภาพรวม
 
 ```mermaid
