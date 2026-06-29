@@ -121,12 +121,37 @@ ngrok config add-authtoken <YOUR_AUTHTOKEN>
 
 ## 2. เริ่มต้นโครงการและติดตั้งไลบรารี
 
+หัวข้อนี้แบ่งเป็นขั้นตอนย่อยทีละจุด ขอให้ทำตามลำดับและรันคำสั่งตรวจสอบ ("ทดสอบ") ทุกครั้งก่อนไปขั้นตอนถัดไป เพื่อให้ทราบได้ทันทีว่าจุดใดเกิดปัญหา หากดำเนินการหลายขั้นตอนพร้อมกันแล้วเกิด error จะไม่สามารถระบุสาเหตุที่แท้จริงได้
+
+### 2.1 สร้างโฟลเดอร์โปรเจกต์
+
 ```bash
 mkdir cmu-healthline-ai && cd cmu-healthline-ai
+```
+
+**คำอธิบาย**: สร้างโฟลเดอร์เปล่าสำหรับเก็บโค้ดทั้งหมดของโครงการ แล้วเข้าไปอยู่ในโฟลเดอร์นั้นทันที (`cd`) เพื่อให้คำสั่งทั้งหมดในขั้นตอนถัดไปถูกรันอยู่ในตำแหน่งที่ถูกต้องเสมอ
+
+### 2.2 กำหนดค่าโครงการด้วย npm init
+
+```bash
 npm init -y
 ```
 
-ปรับแก้ไฟล์ `package.json` ให้เป็น ES module และเพิ่ม script ดังนี้:
+**คำอธิบาย**: คำสั่งนี้สร้างไฟล์ `package.json` ขึ้นมาโดยอัตโนมัติ (flag `-y` คือยอมรับค่าเริ่มต้นทั้งหมดโดยไม่ถามคำถามทีละข้อ) ไฟล์นี้ทำหน้าที่เป็น "บัตรประจำตัว" ของโปรเจกต์ Node.js เก็บชื่อ เวอร์ชัน รายชื่อไลบรารีที่ติดตั้ง และคำสั่ง (scripts) สำหรับรันโปรเจกต์
+
+**ทดสอบ**: เปิดไฟล์ `package.json` ที่ถูกสร้างขึ้น ควรเห็นโครงสร้างประมาณนี้ (ค่า `name`/`version` อาจต่างกันได้):
+
+```json
+{
+  "name": "cmu-healthline-ai",
+  "version": "1.0.0",
+  "main": "index.js"
+}
+```
+
+### 2.3 แก้ไข package.json ให้เป็น ES module พร้อม scripts
+
+เปิดไฟล์ `package.json` ที่สร้างไว้ในขั้นตอนก่อนหน้า แล้ว**แก้ไข**ให้มีคีย์ดังนี้ (เพิ่มเข้าไปในไฟล์เดิม ไม่ต้องลบคีย์อื่นที่ `npm init` สร้างไว้):
 
 ```json
 {
@@ -139,11 +164,20 @@ npm init -y
 }
 ```
 
-ติดตั้งไลบรารีหลักที่จำเป็น:
+**คำอธิบาย**:
+- `"type": "module"` กำหนดให้ Node.js ตีความไฟล์ `.js` ทุกไฟล์ในโปรเจกต์เป็น ES module (ใช้ `import`/`export`) แทนรูปแบบ CommonJS (`require`/`module.exports`) แบบเดิม
+- `scripts.start` และ `scripts.dev` คือคำสั่งย่อที่เรียกผ่าน `npm run` — `dev` ใช้ flag `--watch` ของ Node.js เพื่อรีสตาร์ท server อัตโนมัติทุกครั้งที่บันทึกไฟล์ ส่วน `start` ใช้สำหรับรันจริงโดยไม่ watch
+- `engines.node` ระบุเวอร์ชัน Node.js ขั้นต่ำที่โปรเจกต์ต้องการ ให้ตรงกับเวอร์ชันที่ติดตั้งไว้ในขั้นตอนที่ 1
+
+ขั้นตอนนี้ยังไม่มีคำสั่งให้รันทดสอบ เนื่องจากยังไม่มีไฟล์ `backend/server.js` ให้เรียก (จะสร้างในขั้นตอนที่ 4) — เพียงบันทึกไฟล์แล้วไปขั้นตอนถัดไป
+
+### 2.4 ติดตั้งไลบรารีหลัก
 
 ```bash
 npm install express dotenv @line/bot-sdk openai
 ```
+
+**คำอธิบาย**: คำสั่งนี้ดาวน์โหลดไลบรารีทั้ง 4 รายการเข้าโฟลเดอร์ `node_modules/` และบันทึกชื่อ+เวอร์ชันไว้ในช่อง `dependencies` ของ `package.json` โดยอัตโนมัติ
 
 | ไลบรารี | หน้าที่การใช้งาน |
 |---|---|
@@ -152,12 +186,13 @@ npm install express dotenv @line/bot-sdk openai
 | `@line/bot-sdk` | เรียกใช้งาน LINE Messaging API (reply, rich menu, signature) |
 | `openai` | เรียกใช้งาน OpenAI Responses API (ChatGPT) |
 
-### ตั้งค่า environment variables
+**ทดสอบ**: รันคำสั่ง `npm ls --depth=0` ควรเห็นไลบรารีทั้ง 4 รายการแสดงอยู่ในรายการ โดยไม่มีข้อความ `UNMET DEPENDENCY` ปรากฏ
 
-สร้างไฟล์ `.env.example` (ไฟล์ต้นแบบที่สามารถ commit เข้า git ได้ โดยไม่มีค่าจริงอยู่ภายใน) จากนั้นคัดลอกเป็นไฟล์ `.env` (ห้าม commit ไฟล์นี้):
+### 2.5 สร้างไฟล์ .env.example
+
+สร้างไฟล์ใหม่ชื่อ `.env.example` ที่ root ของโปรเจกต์ แล้ววางเนื้อหานี้:
 
 ```bash
-# .env.example
 PORT=3000
 LINE_CHANNEL_SECRET=
 LINE_CHANNEL_ACCESS_TOKEN=
@@ -165,20 +200,44 @@ OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4.1-mini
 ```
 
+**คำอธิบาย**: ไฟล์นี้เป็น "ต้นแบบ" ที่ระบุชื่อตัวแปร environment ทั้งหมดที่โค้ดในขั้นตอนถัดไปจะเรียกใช้ โดยไม่มีค่าจริงอยู่ภายใน จึงสามารถ commit เข้า git ได้อย่างปลอดภัย เพื่อให้ผู้ร่วมโครงการคนอื่นทราบว่าต้องตั้งค่าตัวแปรใดบ้างโดยไม่ต้องเปิดอ่านโค้ด
+
+### 2.6 คัดลอกเป็นไฟล์ .env จริง
+
 ```bash
 cp .env.example .env
 ```
 
-ขอให้เพิ่ม `.env` และ `node_modules` ลงในไฟล์ `.gitignore` ทันที ก่อนเริ่มเขียนโค้ดที่เรียกใช้ค่าดังกล่าว เพื่อป้องกันมิให้ข้อมูลลับ (secret) ถูกบันทึกเข้าสู่ระบบ git โดยไม่ตั้งใจ:
+**คำอธิบาย**: ไฟล์ `.env` คือไฟล์ที่จะเก็บค่าจริง (เช่น API key) ในขั้นตอนถัดๆ ไป และ**ต้องไม่ commit เข้า git เด็ดขาด** จึงต้องแยกออกจาก `.env.example` ในขั้นตอนก่อนหน้าเสมอ
+
+### 2.7 ป้องกันไม่ให้ secret หลุดเข้า git
+
+สร้างไฟล์ `.gitignore` ที่ root ของโปรเจกต์ (หากยังไม่มี) แล้วเพิ่มเนื้อหาดังนี้:
 
 ```
 node_modules/
 .env
 ```
 
+**คำอธิบาย**: ขอให้ดำเนินการขั้นตอนนี้**ก่อน**ที่จะเริ่มเขียนโค้ดที่อ้างถึงค่าใน `.env` เสมอ (แม้ไฟล์ `.env` ในขั้นตอนนี้จะยังไม่มีค่าจริงก็ตาม) เพื่อป้องกันความผิดพลาดที่อาจเกิดขึ้นได้หากลืมทำขั้นตอนนี้ภายหลัง เมื่อเริ่มมีค่า secret อยู่ในไฟล์แล้ว
+
+**ทดสอบ**: หากเริ่ม git repository ไว้แล้ว (`git init`) ให้รันคำสั่ง `git status` — ไฟล์ `.env` และโฟลเดอร์ `node_modules/` ต้อง**ไม่ปรากฏ**อยู่ในรายการ untracked files
+
 ---
 
 ## 3. โครงสร้าง Frontend / Backend
+
+### 3.1 สร้างโฟลเดอร์และไฟล์เปล่า
+
+```bash
+mkdir -p backend/data backend/scripts frontend
+touch backend/server.js backend/core.js backend/routes.js
+touch frontend/index.html frontend/app.css frontend/app.js
+```
+
+**คำอธิบาย**: `mkdir -p` สร้างโฟลเดอร์ซ้อนกันได้ในคำสั่งเดียว (`backend/data`, `backend/scripts`) ส่วน `touch` สร้างไฟล์เปล่าไว้ก่อน เพื่อให้เห็นโครงสร้างไฟล์ทั้งหมดของโปรเจกต์ตั้งแต่ต้น ก่อนเริ่มเติมเนื้อหาโค้ดในขั้นตอนที่ 4
+
+**ทดสอบ**: รันคำสั่ง `find backend frontend -type f` ผลลัพธ์ควรตรงกับโครงสร้างไฟล์ดังนี้:
 
 ```text
 backend/
@@ -186,45 +245,75 @@ backend/
   core.js            # logic: stats repository, LINE service, signature check
   routes.js          # REST routes + webhook route
   data/              # province_stats.json (ได้รับจากผู้จัดอบรมโดยตรง)
+  scripts/           # สคริปต์ที่รันแยก เช่น setup rich menu
 frontend/
   index.html         # หน้าเว็บ (ทดสอบ UI แบบไม่ต้องผ่าน LINE)
   app.css, app.js
 ```
 
-เหตุผลในการแบ่งโครงสร้างไฟล์มีดังนี้:
+### 3.2 เหตุผลของการแบ่งไฟล์เช่นนี้
+
+ก่อนเริ่มเขียนโค้ดในขั้นตอนที่ 4 ขอให้ทำความเข้าใจบทบาทของแต่ละไฟล์ก่อน เนื่องจากขั้นตอนถัดไปทั้งหมดจะอ้างอิงแนวคิดนี้ตลอด:
 
 - **`server.js`** มีขนาดเล็กและทำหน้าที่เพียงเริ่มต้นระบบ (bootstrap) เท่านั้น ได้แก่ การโหลดค่า environment การสร้าง Express app และการเชื่อม router โดยไม่มีการใส่ business logic ใดๆ
 - **`core.js`** เก็บ business logic ทั้งหมดของระบบ (การอ่านข้อมูล การตอบกลับข้อความ การเรียกใช้งาน LINE และ OpenAI) เพื่อให้สามารถทดสอบในระดับ unit test ได้โดยไม่ต้องพึ่งพา HTTP
 - **`routes.js`** ทำหน้าที่เป็นชั้น HTTP เท่านั้น โดยรับ request แล้วเรียกใช้งาน `core.js` ก่อนส่งกลับเป็น response
 - **`frontend/`** ถูกให้บริการผ่าน `express.static` โดยตรงจาก `server.js` ใช้สำหรับสาธิตหรือทดสอบการทำงานผ่านเว็บเบราว์เซอร์ โดยไม่จำเป็นต้องเปิดแอปพลิเคชัน LINE
 
-ขอให้สร้างไฟล์เปล่าตามโครงสร้างไฟล์โค้ดข้างต้นไว้ก่อน ส่วนไฟล์ `backend/data/province_stats.json` จะได้รับจากผู้จัดอบรมโดยตรง กรุณาบันทึกไว้ในตำแหน่งดังกล่าวก่อนดำเนินการในขั้นตอนถัดไป
+### 3.3 นำไฟล์ข้อมูลมาวางตำแหน่ง
+
+ขอให้นำไฟล์ `backend/data/province_stats.json` (ได้รับจากผู้จัดอบรมโดยตรง) มาวางไว้ในตำแหน่งดังกล่าว ก่อนดำเนินการในขั้นตอนถัดไป เนื่องจากขั้นตอนที่ 4 จะเขียนโค้ดที่อ่านไฟล์นี้ทันทีที่ server เริ่มทำงาน หากไม่มีไฟล์อยู่จริง server จะ throw error ตอน start
 
 ---
 
 ## 4. สร้าง Express server + REST API
 
-`backend/server.js` (จุดเริ่มต้นของแอปพลิเคชัน):
+หัวข้อนี้คือใจความสำคัญที่สุดของคู่มือ ขอให้สร้าง**ทีละไฟล์ ทีละฟังก์ชัน** และรันทดสอบทุกครั้งก่อนไปขั้นตอนถัดไป **ห้ามวางโค้ดทั้งหมดของทั้ง 3 ไฟล์ในครั้งเดียว** เนื่องจากหากมีจุดผิดพลาดเกิดขึ้น จะไม่สามารถรู้ได้ว่าผิดที่ขั้นตอนใด
+
+### 4.1 server.js ขั้นต่ำที่สุด (boot เปล่าๆ ไม่มี route)
+
+วางโค้ดนี้ในไฟล์ `backend/server.js` เป็นเนื้อหาทั้งหมดของไฟล์ในขั้นตอนนี้:
 
 ```js
 import 'dotenv/config';
 import express from 'express';
-import { fileURLToPath } from 'url';
-import path from 'path';
-import router from './routes.js';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const FRONTEND_DIR = path.join(__dirname, '..', 'frontend');
 
 const app = express();
-app.use(express.static(FRONTEND_DIR));
-app.use(router);
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
 ```
 
-`backend/core.js` — ส่วนสำหรับอ่านข้อมูลสถิติ (เป็น business logic เพียงอย่างเดียว ไม่เกี่ยวข้องกับ HTTP):
+**คำอธิบาย**: `import 'dotenv/config'` ต้องอยู่บรรทัดบนสุดของไฟล์เสมอ เพื่อให้ค่าจาก `.env` (เช่น `PORT`) ถูกโหลดเข้า `process.env` ก่อนโค้ดบรรทัดถัดไปเรียกใช้งาน ในขั้นตอนนี้ app ยังไม่มี route หรือไฟล์ static ใดๆ เป้าหมายคือยืนยันก่อนว่า process เริ่มทำงานได้จริง
+
+**ทดสอบ**:
+
+```bash
+npm run dev
+```
+
+ควรเห็นข้อความ `http://localhost:3000` ปรากฏใน terminal เปิดเบราว์เซอร์ไปที่ `http://localhost:3000` จะเห็นข้อความ error "Cannot GET /" ซึ่ง**ถือว่าถูกต้อง**ในขั้นตอนนี้ เพราะยังไม่มี route ใดถูกกำหนดไว้เลย
+
+### 4.2 เพิ่มการให้บริการไฟล์ frontend (static)
+
+แก้ไข `backend/server.js` โดยเพิ่มโค้ดต่อไปนี้ (เพิ่มเข้าไปในไฟล์เดิม ก่อนบรรทัด `app.listen`):
+
+```js
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const FRONTEND_DIR = path.join(__dirname, '..', 'frontend');
+
+app.use(express.static(FRONTEND_DIR));
+```
+
+**คำอธิบาย**: เนื่องจากโปรเจกต์นี้ใช้ ES module ตัวแปร `__dirname` แบบเดิมของ Node.js (CommonJS) จะไม่มีให้ใช้งานโดยอัตโนมัติ จึงต้องสร้างขึ้นเองผ่าน `fileURLToPath` และ `import.meta.url` จากนั้น `express.static` จะให้บริการทุกไฟล์ในโฟลเดอร์ `frontend/` ผ่าน HTTP โดยตรง (เช่น `index.html`, `app.css`)
+
+**ทดสอบ**: ใส่ข้อความทดสอบลงใน `frontend/index.html` เช่น `<h1>Hello</h1>` แล้วเปิด `http://localhost:3000/index.html` (Node.js จะรีสตาร์ท server ให้อัตโนมัติเนื่องจากใช้ `npm run dev` ที่มี `--watch`) ควรเห็นข้อความนั้นแสดงผลในเบราว์เซอร์
+
+### 4.3 สร้าง core.js — เก็บข้อมูลสถิติ (ยังไม่ผูกกับ HTTP)
+
+วางโค้ดนี้ในไฟล์ `backend/core.js` เป็นเนื้อหาแรกของไฟล์:
 
 ```js
 import { readFileSync } from 'fs';
@@ -251,22 +340,63 @@ export class ProvinceStatsRepository {
 }
 ```
 
-`backend/routes.js` — ส่วนกำหนด REST endpoints:
+**คำอธิบาย**: คลาสนี้**ไม่รู้จัก** Express หรือ HTTP เลย มีหน้าที่เพียงอ่านไฟล์ JSON เข้าหน่วยความจำครั้งเดียวตอนสร้าง instance (`constructor`) แล้วเปิดฟังก์ชันค้นหา/กรองข้อมูลให้เรียกใช้ การแยกโค้ดส่วนนี้ออกจาก route ทำให้สามารถทดสอบ logic การค้นหาได้โดยไม่ต้องเปิด server เลย
+
+**ทดสอบ**: รันคำสั่งทดลองนี้จาก terminal (ที่ root ของโปรเจกต์) เพื่อเรียกใช้คลาสตรงๆ ก่อนเอาไปผูกกับ route:
+
+```bash
+node -e "import('./backend/core.js').then(async ({ ProvinceStatsRepository }) => { \
+  const repo = new ProvinceStatsRepository('./backend/data/province_stats.json'); \
+  console.log(repo.findByProvince('เชียงราย', 2026)); \
+});"
+```
+
+ควรเห็น object ข้อมูลของจังหวัดเชียงรายปี 2026 แสดงผลใน terminal โดยไม่มี error
+
+### 4.4 สร้าง routes.js — เริ่มจาก route เดียว (/health)
+
+วางโค้ดนี้ในไฟล์ `backend/routes.js` เป็นเนื้อหาแรกของไฟล์ (ยังไม่ผูก `core.js`):
 
 ```js
 import express from 'express';
-import { fileURLToPath } from 'url';
-import path from 'path';
-import { ProvinceStatsRepository } from './core.js';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const provinceStats = new ProvinceStatsRepository(path.join(__dirname, 'data/province_stats.json'));
 
 const router = express.Router();
 
 router.get('/health', (_req, res) => {
     res.json({ status: 'ok', service: 'healthline-ai' });
 });
+
+export default router;
+```
+
+**คำอธิบาย**: `express.Router()` คือกลุ่มของ route ที่แยกออกจาก `app` หลัก เพื่อให้ `server.js` ไม่ต้องรู้รายละเอียดของแต่ละ endpoint มีหน้าที่แค่ "เสียบ" router นี้เข้ากับ app เท่านั้น route `/health` เป็น route ที่ง่ายที่สุดที่ใช้ตรวจสอบว่า server ยังทำงานอยู่หรือไม่ (มักใช้โดยระบบ monitoring)
+
+แก้ไข `backend/server.js` เพิ่มการ import และเสียบ router (เพิ่มก่อนบรรทัด `app.listen`):
+
+```js
+import router from './routes.js';
+app.use(router);
+```
+
+**ทดสอบ**:
+
+```bash
+curl http://localhost:3000/health
+```
+
+ควรได้ผลลัพธ์ `{"status":"ok","service":"healthline-ai"}`
+
+### 4.5 ผูก core.js เข้ากับ routes.js — เพิ่ม /api/provinces
+
+แก้ไข `backend/routes.js` เพิ่ม import, การสร้าง repository, และ route ใหม่ (เพิ่มต่อจาก route `/health`):
+
+```js
+import { fileURLToPath } from 'url';
+import path from 'path';
+import { ProvinceStatsRepository } from './core.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const provinceStats = new ProvinceStatsRepository(path.join(__dirname, 'data/province_stats.json'));
 
 // คืน record ของจังหวัด name หรือ 404 ถ้าไม่พบ
 // (findByProvince คืน object เดียวถ้าระบุ year, คืน array ทุกปีถ้าไม่ระบุ)
@@ -286,24 +416,41 @@ router.get('/api/provinces', (req, res) => {
         year: parsedYear,
     }));
 });
+```
 
+**คำอธิบาย**: route นี้รองรับ 2 รูปแบบการใช้งานในจุดเดียว — หากมี query `?province=...` จะค้นหาจังหวัดนั้นโดยตรง (ผ่าน `sendProvince`) หากไม่มีจะคืนรายการที่กรอง/เรียงลำดับตาม `field`, `min`, `max`, `year` แทน (ผ่าน `query()`) ค่าทั้งหมดที่มาจาก `req.query` เป็น string เสมอ จึงต้องแปลงเป็น `Number` ก่อนส่งให้เมธอดของ repository ที่คาดหวังค่าตัวเลข
+
+**ทดสอบ**:
+
+```bash
+curl "http://localhost:3000/api/provinces?province=เชียงราย&year=2026"
+curl "http://localhost:3000/api/provinces?year=2026&field=patient_rate&min=300"
+```
+
+คำสั่งแรกควรได้ JSON ของจังหวัดเดียว คำสั่งที่สองควรได้ array ของจังหวัดที่กรองตามเงื่อนไข
+
+### 4.6 เพิ่ม route ค้นหาด้วย path param
+
+แก้ไข `backend/routes.js` เพิ่ม route ใหม่ต่อจาก `/api/provinces` (ก่อนบรรทัด `export default router;`):
+
+```js
 router.get('/api/provinces/:province', (req, res) => {
     const { year } = req.query;
     sendProvince(res, req.params.province, year !== undefined ? Number(year) : undefined);
 });
-
-export default router;
 ```
 
-สามารถทดสอบได้ทันทีโดยยังไม่ต้องมี LINE/OpenAI key:
+**คำอธิบาย**: `req.params.province` มาจากส่วน `:province` ของ path โดยตรง (เช่น `/api/provinces/เชียงราย`) ต่างจาก `req.query.province` ที่มาจาก query string (`?province=เชียงราย`) ในขั้นตอนที่ 4.5 — เป็นการเปิดให้เรียกใช้ได้ทั้งสองรูปแบบ เพื่อความสะดวกของผู้ใช้ API
+
+**ทดสอบ**:
 
 ```bash
-npm run dev
-curl http://localhost:3000/health
-curl "http://localhost:3000/api/provinces?year=2026&field=patient_rate&min=300"
+curl http://localhost:3000/api/provinces/เชียงราย
 ```
 
-### ทดสอบด้วย REST Client extension (แทน curl)
+ควรได้ array ของข้อมูลจังหวัดเชียงรายทุกปีที่มีอยู่ในไฟล์ข้อมูล (ไม่ระบุปี = คืนทุกปี ตามที่ `findByProvince` กำหนดไว้ในขั้นตอนที่ 4.3)
+
+### 4.7 ทดสอบด้วย REST Client extension (แทน curl)
 
 ติดตั้ง extension **[REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)** ใน VS Code (หากยังไม่ได้ติดตั้งในขั้นตอนที่ 1) จากนั้นสร้างไฟล์ `api.http` ที่ root ของโครงการ แล้วคัดลอกเนื้อหาดังต่อไปนี้ไปวาง:
 
