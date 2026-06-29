@@ -1,6 +1,18 @@
 @host = http://localhost:3000
 @lineSignature = paste-generated-signature-here
 
+### [REST ทดลอง] Health check
+GET {{host}}/health
+
+### [REST ทดลอง] Hello API
+GET {{host}}/api/hello
+
+### [REST ทดลอง] Echo query string
+GET {{host}}/api/echo?text=hello
+
+### [REST ทดลอง] URL param
+GET {{host}}/api/users/101
+
 ### [R4] Health check
 GET {{host}}/health
 

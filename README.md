@@ -242,13 +242,111 @@ app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
 
 ### Checkpoint 3: ตรวจ syntax ของ server
 
-ในขั้นตอนนี้ยังไม่จำเป็นต้องรัน server เนื่องจาก `routes.js` และ `core.js` จะถูกเขียนในขั้นตอนถัดไป ให้ตรวจสอบก่อนว่าไฟล์นี้ไม่มี syntax error:
+ก่อนสร้าง route ให้ตรวจสอบก่อนว่าไฟล์นี้ไม่มี syntax error:
 
 ```bash
 node --check backend/server.js
 ```
 
 หากผ่าน จะไม่มีข้อความ error แสดงออกมา
+
+## ขั้นตอนที่ 3.1: ทดลองเขียน REST API อย่างง่าย
+
+REST API คือ endpoint ที่ client สามารถเรียกผ่าน HTTP เช่น `GET /health` หรือ `GET /api/hello`
+
+ในขั้นตอนนี้จะสร้าง route แบบทดลองก่อน เพื่อให้เห็นว่า Express รับ request และส่ง response กลับอย่างไร ส่วน route จริงของโปรเจกต์จะเขียนอีกครั้งในขั้นตอนที่ 13
+
+เปิดไฟล์ `backend/routes.js` แล้ววางโค้ดนี้:
+
+```js
+import express from 'express';
+
+const router = express.Router();
+
+// endpoint สำหรับตรวจว่า server ทำงานอยู่หรือไม่
+router.get('/health', (_req, res) => {
+    res.json({ status: 'ok' });
+});
+
+// endpoint ตัวอย่างที่ส่งข้อความ JSON กลับไปให้ client
+router.get('/api/hello', (_req, res) => {
+    res.json({ message: 'สวัสดีจาก REST API' });
+});
+
+// endpoint ตัวอย่างที่อ่านค่าจาก query string เช่น /api/echo?text=hello
+router.get('/api/echo', (req, res) => {
+    res.json({ text: req.query.text || 'ยังไม่ได้ส่ง text' });
+});
+
+// endpoint ตัวอย่างที่อ่าน URL param เช่น /api/users/101
+router.get('/api/users/:id', (req, res) => {
+    res.json({ userId: req.params.id });
+});
+
+export default router;
+```
+
+คำอธิบายโค้ดส่วนนี้:
+
+- `router.get('/health', ...)` สร้าง endpoint แบบ `GET`
+- `res.json(...)` ส่งข้อมูลกลับเป็น JSON
+- `req.query.text` อ่านค่าจาก query string เช่น `?text=hello`
+- `req.params.id` อ่านค่าจาก URL param เช่น `/api/users/101`
+- `export default router` ส่ง router ให้ `backend/server.js` นำไปใช้งาน
+
+Query string และ URL param ต่างกันดังนี้:
+
+```text
+Query string: /api/echo?text=hello
+อ่านค่า: req.query.text
+
+URL param: /api/users/101
+อ่านค่า: req.params.id
+```
+
+### Checkpoint 3.1: ทดสอบ REST API อย่างง่าย
+
+ตรวจ syntax ของ `routes.js`:
+
+```bash
+node --check backend/routes.js
+```
+
+รัน server:
+
+```bash
+npm run dev
+```
+
+จากนั้นเปิดไฟล์ `api.http` แล้วเพิ่ม request สำหรับทดสอบ REST API ชุดแรก:
+
+```http
+@host = http://localhost:3000
+
+### [REST ทดลอง] Health check
+GET {{host}}/health
+
+### [REST ทดลอง] Hello API
+GET {{host}}/api/hello
+
+### [REST ทดลอง] Echo query string
+GET {{host}}/api/echo?text=hello
+
+### [REST ทดลอง] URL param
+GET {{host}}/api/users/101
+```
+
+ให้กด `Send Request` ทีละอันใน `api.http`
+
+ผลลัพธ์ที่ควรได้:
+
+```json
+{
+  "message": "สวัสดีจาก REST API"
+}
+```
+
+เมื่อทดสอบเสร็จแล้ว ให้หยุด server ด้วย `Ctrl+C` แล้วดำเนินการขั้นตอนถัดไป
 
 ## ขั้นตอนที่ 4: Draft layout ของ `backend/core.js`
 
