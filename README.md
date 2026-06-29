@@ -10,14 +10,33 @@
 
 ## ภาพรวม
 
-```text
-ผู้ใช้ใน LINE
-   ↓ พิมพ์ข้อความ หรือกด Rich Menu
-LINE Official Account
-   ↓ ส่ง webhook มาที่ /webhook
-Express server ของระบบ
-   ↓ ค้นข้อมูล / สร้างกราฟ / เรียก AI
-ตอบกลับไปที่ LINE
+```mermaid
+flowchart TD
+    A[ผู้ใช้ส่งข้อความใน LINE] --> B[LINE ส่ง event มาที่ /webhook]
+    B --> C[routes.js: webhook ตรวจ signature]
+    C --> D[LineService.respond เลือก feature จากข้อความ]
+
+    D -->|สรุปข้อมูล เชียงราย| E[chart]
+    E --> F[ProvinceStatsRepository.findByProvince]
+    F --> G[chartImage สร้าง URL กราฟ]
+    G --> H[ตอบกลับเป็น image message]
+
+    D -->|กรองข้อมูล| I[provinceListFlex]
+    I --> J[ผู้ใช้เลือกจังหวัด]
+    J --> K[yearPicker]
+    K --> L[ผู้ใช้เลือกปี]
+    L --> M[record]
+    M --> N[formatRecord]
+    N --> O[ตอบกลับเป็น text message]
+
+    D -->|AI เชียงราย 2026| P[ai]
+    P --> Q[parseProvinceYear]
+    Q --> R[ProvinceStatsRepository.findByProvince]
+    R --> S{มี OPENAI_API_KEY หรือไม่}
+    S -->|มี| T[ส่งข้อมูลให้ OpenAI อธิบาย]
+    S -->|ไม่มี| U[ใช้ formatRecord เป็น fallback]
+    T --> V[ตอบกลับเป็น text message จาก AI]
+    U --> W[ตอบกลับเป็นข้อความสถิติ]
 ```
 
 คำศัพท์ที่ใช้ในคู่มือนี้:
@@ -1220,37 +1239,6 @@ AI เชียงราย 2026
 ```
 
 หากคำตอบยังเป็นข้อความสถิติทั่วไป ให้ตรวจสอบ terminal ว่ามีข้อความ `OpenAI request failed` หรือไม่
-
-## ขั้นตอนที่ 19: สรุปว่าแต่ละ feature อยู่ตรงไหน
-
-```mermaid
-flowchart TD
-    A[ผู้ใช้ส่งข้อความใน LINE] --> B[LINE ส่ง event มาที่ /webhook]
-    B --> C[routes.js: webhook ตรวจ signature]
-    C --> D[LineService.respond เลือก feature จากข้อความ]
-
-    D -->|สรุปข้อมูล เชียงราย| E[chart]
-    E --> F[ProvinceStatsRepository.findByProvince]
-    F --> G[chartImage สร้าง URL กราฟ]
-    G --> H[ตอบกลับเป็น image message]
-
-    D -->|กรองข้อมูล| I[provinceListFlex]
-    I --> J[ผู้ใช้เลือกจังหวัด]
-    J --> K[yearPicker]
-    K --> L[ผู้ใช้เลือกปี]
-    L --> M[record]
-    M --> N[formatRecord]
-    N --> O[ตอบกลับเป็น text message]
-
-    D -->|AI เชียงราย 2026| P[ai]
-    P --> Q[parseProvinceYear]
-    Q --> R[ProvinceStatsRepository.findByProvince]
-    R --> S{มี OPENAI_API_KEY หรือไม่}
-    S -->|มี| T[ส่งข้อมูลให้ OpenAI อธิบาย]
-    S -->|ไม่มี| U[ใช้ formatRecord เป็น fallback]
-    T --> V[ตอบกลับเป็น text message จาก AI]
-    U --> W[ตอบกลับเป็นข้อความสถิติ]
-```
 
 ## แบบฝึกหัดต่อยอด
 
