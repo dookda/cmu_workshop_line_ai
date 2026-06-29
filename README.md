@@ -8,10 +8,6 @@
 2. `กรองข้อมูล` เลือกจังหวัด แล้วเลือกปี
 3. `AI` อธิบายข้อมูลที่ query ได้เป็นภาษาไทย
 
-ภาพตัวอย่าง Rich Menu ที่ใช้ใน workshop:
-
-![Rich Menu สำหรับ 3 feature](assets/linerichmenu.jpg)
-
 ## ภาพรวม
 
 ```mermaid
@@ -1074,7 +1070,7 @@ LINE_CHANNEL_ACCESS_TOKEN=ใส่ Channel access token
 
 หลังแก้ `.env` ให้หยุด server แล้วรันใหม่ เพราะ `.env` ถูกอ่านตอน server เริ่มทำงาน
 
-### Checkpoint 15: ตรวจว่ามีค่า LINE ใน `.env`
+### Checkpoint 14: ตรวจว่ามีค่า LINE ใน `.env`
 
 รัน:
 
@@ -1090,7 +1086,53 @@ true true
 
 หากเห็นค่า `false` แสดงว่ายังไม่ได้ใส่ค่า หรือชื่อ key ใน `.env` สะกดไม่ตรง
 
-## ขั้นตอนที่ 15: ทดสอบ webhook signature ถูกด้วย `api.http`
+## ขั้นตอนที่ 15: เพิ่ม Rich Menu ใน LINE Official Account
+
+ขั้นตอนนี้จะใช้ภาพ `assets/linerichmenu.jpg` เป็น Rich Menu ของ LINE OA
+
+![Rich Menu สำหรับ 3 feature](assets/linerichmenu.jpg)
+
+ตั้งค่าใน LINE Official Account Manager:
+
+1. เข้า LINE Official Account Manager
+2. เลือก Official Account ที่สร้างไว้
+3. ไปที่เมนู `Rich menus`
+4. กด `Create new`
+5. ตั้งชื่อ Rich Menu เช่น `HealthLine Stats Menu`
+6. เลือก template ที่แบ่งพื้นที่เป็น 3 ช่อง
+7. อัปโหลดภาพ `assets/linerichmenu.jpg`
+8. ตั้งค่า action ของแต่ละช่องเป็น `Text`
+
+กำหนดข้อความของแต่ละช่องดังนี้:
+
+```text
+ช่องสรุปข้อมูล: สรุปข้อมูล
+ช่องกรองข้อมูล: กรองข้อมูล
+ช่อง AI: AI
+```
+
+จากนั้นตั้งค่า Rich Menu ให้แสดงเป็นเมนูหลักของบัญชี:
+
+1. เปิดใช้งาน Rich Menu
+2. ตั้ง display period ให้ครอบคลุมช่วงเวลาที่ต้องการใช้งาน
+3. ตั้งค่าให้ Rich Menu นี้เป็น default หรือแสดงกับผู้ใช้ทุกคน
+4. บันทึกการตั้งค่า
+
+### Checkpoint 15: ตรวจว่า Rich Menu ส่งข้อความถูกต้อง
+
+หลังเพิ่ม LINE OA เป็นเพื่อน ให้กดแต่ละช่องใน Rich Menu แล้วตรวจว่าข้อความที่ถูกส่งในห้องแชทตรงกับที่ตั้งไว้:
+
+```text
+สรุปข้อมูล
+กรองข้อมูล
+AI
+```
+
+หากกดแล้วไม่มีข้อความปรากฏในห้องแชท ให้กลับไปตรวจ action ของแต่ละช่องว่าเลือกเป็น `Text` และพิมพ์ข้อความตรงตามตัวอย่าง
+
+หมายเหตุ: ในขั้นตอนนี้ยังไม่จำเป็นต้องได้คำตอบจากบอต เพราะจะทดสอบการตอบกลับหลังจากเปิด webhook ในขั้นตอนถัดไป
+
+## ขั้นตอนที่ 16: ทดสอบ webhook signature ถูกด้วย `api.http`
 
 หลังจากได้ `LINE_CHANNEL_SECRET` แล้ว ให้กลับมาทดสอบ `[R7] LINE webhook route` แบบ signature ถูก
 
@@ -1127,7 +1169,7 @@ OK
 
 ข้อควรระวัง: body ใน `api.http` ต้องตรงกับ `BODY='{"events":[]}'` ทุกตัวอักษร หากเพิ่มช่องว่างหรือขึ้นบรรทัดใน JSON ค่า signature อาจไม่ตรงกัน
 
-## ขั้นตอนที่ 16: เปิด webhook ให้ LINE เรียกมายังเครื่อง local
+## ขั้นตอนที่ 17: เปิด webhook ให้ LINE เรียกมายังเครื่อง local
 
 LINE ต้องเรียก URL แบบ public HTTPS ได้ แต่เครื่อง local ใช้ localhost จึงต้องใช้ tunnel เช่น ngrok หรือ Cloudflare Tunnel
 
@@ -1147,7 +1189,7 @@ https://your-public-url.example/webhook
 
 หาก Verify ผ่าน แสดงว่า LINE สามารถส่ง request มาถึง server ได้แล้ว
 
-### Checkpoint 16: ดู terminal ตอนกด Verify
+### Checkpoint 17: ดู terminal ตอนกด Verify
 
 ตอนกด `Verify` ใน LINE Developers ให้กลับมาดู terminal ที่รัน `npm run dev`
 
@@ -1155,7 +1197,7 @@ https://your-public-url.example/webhook
 - หากเห็น `Bad Request` ให้กลับไปตรวจสอบ `LINE_CHANNEL_SECRET`
 - หาก tunnel หยุดทำงาน LINE จะส่ง request มายัง server ไม่ได้
 
-## ขั้นตอนที่ 17: ทดสอบการสนทนากับบอต
+## ขั้นตอนที่ 18: ทดสอบการสนทนากับบอต
 
 เพิ่ม LINE OA เป็นเพื่อน แล้วพิมพ์:
 
@@ -1187,7 +1229,7 @@ AI เชียงราย 2026
 
 หากยังไม่ได้ใส่ `OPENAI_API_KEY` บอตจะตอบกลับเป็นข้อความสถิติแทน
 
-### Checkpoint 17: ทดสอบ 3 feature ใน LINE
+### Checkpoint 18: ทดสอบ 3 feature ใน LINE
 
 ให้ทดสอบตามลำดับนี้:
 
@@ -1196,10 +1238,11 @@ AI เชียงราย 2026
 3. พิมพ์ `กรองข้อมูล` ควรเห็นรายการจังหวัด
 4. กดจังหวัด แล้วกดปี ควรได้รับข้อความสถิติ
 5. พิมพ์ `AI เชียงราย 2026` ควรได้รับข้อความอธิบาย หรือ fallback เป็นข้อความสถิติหากยังไม่มี OpenAI key
+6. กดแต่ละช่องใน Rich Menu แล้วตรวจว่าได้ผลลัพธ์ตรงกับ feature นั้น
 
 หาก feature แรกผ่าน แต่ feature ถัดไปไม่ผ่าน ให้ตรวจสอบ error ใน terminal แล้วแก้ไขทีละ feature
 
-## ขั้นตอนที่ 18: ตั้งค่า OpenAI
+## ขั้นตอนที่ 19: ตั้งค่า OpenAI
 
 ใส่ค่าใน `.env`:
 
@@ -1222,7 +1265,7 @@ AI เชียงราย 2026
 
 โค้ดจะ query ข้อมูลก่อน แล้วส่งเฉพาะตัวเลขของ record นั้นให้ AI อธิบาย
 
-### Checkpoint 18: ตรวจ OpenAI key
+### Checkpoint 19: ตรวจ OpenAI key
 
 รัน:
 
