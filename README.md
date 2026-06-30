@@ -1296,6 +1296,8 @@ AI
 
 หลังจากได้ `LINE_CHANNEL_SECRET` แล้ว ให้กลับมาทดสอบ `[R7] LINE webhook route` แบบ signature ถูก
 
+### Checkpoint 16: ทดสอบ webhook signature ถูก
+
 สร้าง signature จาก body ตัวอย่าง:
 
 ```bash
