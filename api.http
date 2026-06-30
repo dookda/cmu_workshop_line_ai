@@ -13,6 +13,43 @@ GET {{host}}/api/echo?text=hello
 ### [REST ทดลอง] URL param
 GET {{host}}/api/users/101
 
+### [Chart Manual] Create chart with QuickChart
+POST https://quickchart.io/chart
+Content-Type: application/json
+
+{
+  "version": "4",
+  "width": 800,
+  "height": 500,
+  "backgroundColor": "white",
+  "format": "png",
+  "chart": {
+    "type": "bar",
+    "data": {
+      "labels": ["2024", "2025", "2026"],
+      "datasets": [
+        {
+          "label": "ผู้ป่วย (คน)",
+          "data": [120, 180, 240],
+          "backgroundColor": "#20A475"
+        }
+      ]
+    },
+    "options": {
+      "plugins": {
+        "title": {
+          "display": true,
+          "text": "ตัวอย่างกราฟจังหวัดเชียงราย"
+        },
+        "legend": { "display": false }
+      },
+      "scales": {
+        "y": { "beginAtZero": true }
+      }
+    }
+  }
+}
+
 ### [R4] Health check
 GET {{host}}/health
 
