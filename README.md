@@ -318,7 +318,7 @@ node --check backend/routes.js
 npm run dev
 ```
 
-จากนั้นเปิดไฟล์ `api.http` แล้วเพิ่ม request สำหรับทดสอบ REST API ชุดแรก:
+จากนั้นสร้างไฟล์ `api.http` ที่ root ของโปรเจกต์ แล้ววาง request สำหรับทดสอบ REST API ชุดแรก:
 
 ```http
 @host = http://localhost:3000
@@ -798,12 +798,11 @@ node --check backend/core.js
 
 หากผ่าน แสดงว่า `core.js` พร้อมให้ `routes.js` import ไปใช้งานแล้ว
 
-## ขั้นตอนที่ 12: เตรียม `api.http` สำหรับ test endpoint ทีละตัว
+## ขั้นตอนที่ 12: เพิ่ม request ใน `api.http` สำหรับ test endpoint ทีละตัว
 
-เปิดไฟล์ `api.http` แล้ววาง:
+เปิดไฟล์ `api.http` แล้วเพิ่ม request ชุดนี้ต่อจาก request ทดลองเดิม:
 
 ```http
-@host = http://localhost:3000
 @lineSignature = paste-generated-signature-here
 
 ### [R4] Health check
