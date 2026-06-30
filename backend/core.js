@@ -228,7 +228,7 @@ export class LineService {
                     `อัตราป่วย ${record.patient_rate} ต่อแสนประชากร เสียชีวิต ${record.dead} คน ` +
                     `อัตราตาย ${record.dead_rate} CFR ${record.cfr}%`,
             });
-            return textReply(response.output_text.trim());
+            return textReply(`${response.output_text.trim()}\n[ai]`);
         } catch (err) {
             console.error('OpenAI request failed; using local fallback', err.message);
             return textReply(formatRecord(record));

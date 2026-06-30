@@ -230,6 +230,10 @@ const app = express();
 app.use(express.static(FRONTEND_DIR));
 app.use(router);
 
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(FRONTEND_DIR, 'index.html'));
+// });
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
 ```
@@ -517,51 +521,6 @@ node --check backend/core.js
 
 ## ขั้นตอนที่ 8: เพิ่มฟังก์ชันสร้างกราฟ
 
-วางต่อจาก helper:
-
-```js
-// [C4] helper functions — สร้างข้อความ, parse จังหวัด+ปี, สร้าง chart URL
-
-...
-function chartImage(records) {
-    const province = records[0].province;
-    const config = {
-        type: 'bar',
-        data: {
-            labels: records.map(item => String(item.year)),
-            datasets: [{ label: 'ผู้ป่วย (คน)', data: records.map(item => item.patient), backgroundColor: '#20A475' }],
-        },
-        options: {
-            plugins: { title: { display: true, text: `สรุปข้อมูลจังหวัด${province}` }, legend: { display: false } },
-            scales: { y: { beginAtZero: true } },
-        },
-    };
-    const url = `https://quickchart.io/chart?width=800&height=500&backgroundColor=white&v=4&c=${encodeURIComponent(JSON.stringify(config))}`;
-    return {
-        type: 'image',
-        originalContentUrl: url,
-        previewImageUrl: url,
-        caption: `สรุปข้อมูลจังหวัด${province} (${records[0].year}-${records[records.length - 1].year})`,
-    };
-}
-```
-
-คำอธิบายโค้ดส่วนนี้:
-
-- ใช้ QuickChart เพื่อสร้างรูปกราฟจาก URL
-- LINE จะได้รับ image message พร้อม caption
-- feature นี้ทำงานเมื่อผู้ใช้พิมพ์ `สรุปข้อมูล เชียงราย`
-
-### Checkpoint 8: ตรวจ syntax หลังเพิ่มกราฟ
-
-รัน:
-
-```bash
-node --check backend/core.js
-```
-
-หากผ่าน แสดงว่า config ของกราฟและ template string ถูกต้อง
-
 ### Checkpoint 8.1: ทดลองสร้างกราฟแบบ manual ผ่าน `api.http`
 
 ก่อนให้บอตสร้างกราฟอัตโนมัติ ให้ทดลองส่ง chart config ไปที่ QuickChart โดยตรงก่อน เพื่อดูว่า JSON หนึ่งชุดสามารถกลายเป็นรูปกราฟได้อย่างไร
@@ -618,6 +577,53 @@ Content-Type: application/json
 - `title.text` คือชื่อกราฟ
 
 หมายเหตุ: request นี้ต้องใช้อินเทอร์เน็ต เพราะเป็นการเรียกบริการ QuickChart โดยตรง
+
+
+วางโค้ดต่อจาก helper:
+
+```js
+// [C4] helper functions — สร้างข้อความ, parse จังหวัด+ปี, สร้าง chart URL
+
+...
+function chartImage(records) {
+    const province = records[0].province;
+    const config = {
+        type: 'bar',
+        data: {
+            labels: records.map(item => String(item.year)),
+            datasets: [{ label: 'ผู้ป่วย (คน)', data: records.map(item => item.patient), backgroundColor: '#20A475' }],
+        },
+        options: {
+            plugins: { title: { display: true, text: `สรุปข้อมูลจังหวัด${province}` }, legend: { display: false } },
+            scales: { y: { beginAtZero: true } },
+        },
+    };
+    const url = `https://quickchart.io/chart?width=800&height=500&backgroundColor=white&v=4&c=${encodeURIComponent(JSON.stringify(config))}`;
+    return {
+        type: 'image',
+        originalContentUrl: url,
+        previewImageUrl: url,
+        caption: `สรุปข้อมูลจังหวัด${province} (${records[0].year}-${records[records.length - 1].year})`,
+    };
+}
+```
+
+คำอธิบายโค้ดส่วนนี้:
+
+- ใช้ QuickChart เพื่อสร้างรูปกราฟจาก URL
+- LINE จะได้รับ image message พร้อม caption
+- feature นี้ทำงานเมื่อผู้ใช้พิมพ์ `สรุปข้อมูล เชียงราย`
+
+### Checkpoint 8: ตรวจ syntax หลังเพิ่มกราฟ
+
+รัน:
+
+```bash
+node --check backend/core.js
+```
+
+หากผ่าน แสดงว่า config ของกราฟและ template string ถูกต้อง
+
 
 ## ขั้นตอนที่ 9: เพิ่ม Flex Message สำหรับ Rich Menu flow
 
@@ -759,13 +765,13 @@ export class LineService {
             const response = await this.openai.responses.create({
                 model: this.model,
                 instructions:
-                    'อธิบายสถิติโรคติดต่อภาษาไทยแบบสั้น 1-2 ประโยค ใช้เฉพาะข้อมูลที่ให้มา ห้ามแต่งตัวเลขเพิ่ม และใช้ปี ค.ศ. ตามข้อมูล',
+                    'อธิบายสถิติโรคติดต่อภาษาไทยแบบสั้น 1-2 ประโยค ใช้เฉพาะข้อมูลที่ให้มา ห้ามแต่งตัวเลขเพิ่ม และใช้ปี พ.ศ. แทน คำตอบต้องเป็นภาษาไทย',
                 input:
                     `จังหวัด${record.province} ปี ${record.year}: ผู้ป่วย ${record.patient} คน ` +
                     `อัตราป่วย ${record.patient_rate} ต่อแสนประชากร เสียชีวิต ${record.dead} คน ` +
                     `อัตราตาย ${record.dead_rate} CFR ${record.cfr}%`,
             });
-            return textReply(response.output_text.trim());
+            return textReply(`${response.output_text.trim()}\n[ai]`);
         } catch (err) {
             console.error('OpenAI request failed; using local fallback', err.message);
             return textReply(formatRecord(record));
@@ -1213,13 +1219,41 @@ x-line-signature: {{lineSignature}}
 
 ทำในหน้า LINE:
 
-1. เข้า LINE Official Account Manager
+1. เข้า LINE Official Account Manager [text](https://manager.line.biz/) กด `Create new`
+
+   <img src="assets/line_screen/1.png" alt="LINE Official Account Manager" width="450">
 2. สร้าง Official Account ใหม่
+
+   <img src="assets/line_screen/2.png" alt="สร้าง Official Account ใหม่" width="450">
+
+   <img src="assets/line_screen/3.png" alt="กรอกข้อมูล Official Account" width="450">
+
+   <img src="assets/line_screen/4.png" alt="ยืนยันการสร้าง Official Account" width="450">
+
+   <img src="assets/line_screen/5.png" alt="ยืนยันการสร้าง Official Account" width="450">
+
+   ปรับแต่งโปรไฟล์และรูปภาพของ Official Account ตามต้องการ
+
+   <img src="assets/line_screen/6.png" alt="ปรับแต่งโปรไฟล์และรูปภาพ" width="450">
+
+    เปิดใช้งาน Messaging API โดยไปที่เมนู `Messaging API` แล้วกด `Enable`
+
+   <img src="assets/line_screen/10.png" alt="เปิดใช้งาน Messaging API" width="450">
+
+   กำหนดชื่อ provider และกด `Create` หากยังไม่มี provider
+
+   <img src="assets/line_screen/11.png" alt="กำหนดชื่อ provider" width="450">
+
 3. เข้า LINE Developers Console
-4. สร้าง Provider หากยังไม่มี
-5. สร้าง Messaging API channel หรือเชื่อม LINE OA เข้ากับ Messaging API
-6. คัดลอก `Channel secret`
-7. สร้างและคัดลอก `Channel access token`
+
+   <img src="assets/line_screen/7.png" alt="LINE Developers Console" width="450">
+
+4. สร้าง Messaging API channel หรือเชื่อม LINE OA เข้ากับ Messaging API
+
+    <img src="assets/line_screen/12.png" alt="สร้าง Messaging API channel" width="450">
+    
+5. คัดลอก `Channel secret`
+6. สร้างและคัดลอก `Channel access token`
 
 นำค่าไปใส่ใน `.env`:
 
@@ -1250,11 +1284,11 @@ true true
 
 ขั้นตอนนี้จะใช้ภาพ `assets/linerichmenu.jpg` เป็น Rich Menu ของ LINE OA
 
-![Rich Menu สำหรับ 3 feature](assets/linerichmenu.jpg)
+<img src="assets/linerichmenu.jpg" alt="Rich Menu สำหรับ 3 feature" width="450">
 
 ตั้งค่าใน LINE Official Account Manager:
 
-1. เข้า LINE Official Account Manager
+1. เข้า LINE Official Account Manager [text](https://manager.line.biz/)
 2. เลือก Official Account ที่สร้างไว้
 3. ไปที่เมนู `Rich menus`
 4. กด `Create new`
@@ -1439,6 +1473,18 @@ AI เชียงราย 2026
 
 ## ขั้นตอนที่ 19: ตั้งค่า OpenAI
 
+เปิดใช้ OpenAI API และสร้าง API key:
+
+1. เข้า OpenAI Platform: https://platform.openai.com/
+2. สมัครหรือเข้าสู่ระบบด้วยบัญชี OpenAI
+3. ไปที่หน้า Billing แล้วเพิ่ม payment method หรือเติมเครดิตให้พร้อมใช้งาน API
+4. ไปที่หน้า API keys: https://platform.openai.com/api-keys
+5. กด `Create new secret key`
+6. คัดลอก API key ทันที เพราะระบบจะแสดง key เต็มให้ดูครั้งเดียว
+7. เก็บ API key เป็นความลับ ห้ามส่งขึ้น GitHub หรือใส่ไว้ในไฟล์ที่แชร์สาธารณะ
+
+หมายเหตุ: ChatGPT ที่ใช้งานผ่านเว็บหรือแอป กับ OpenAI API เป็นคนละส่วนกัน การมีบัญชี ChatGPT หรือแพ็กเกจ ChatGPT ไม่ได้แปลว่าโปรเจกต์นี้มี API key แล้ว ต้องสร้าง API key ใน OpenAI Platform แยกต่างหาก
+
 ใส่ค่าใน `.env`:
 
 ```env
@@ -1458,7 +1504,7 @@ npm run dev
 AI เชียงราย 2026
 ```
 
-โค้ดจะ query ข้อมูลก่อน แล้วส่งเฉพาะตัวเลขของ record นั้นให้ AI อธิบาย
+โค้ดจะ query ข้อมูลก่อน แล้วส่งเฉพาะตัวเลขของ record นั้นให้ AI อธิบาย หากตอบด้วย AI จริง ข้อความจะลงท้ายด้วย `[ai]`
 
 ### Checkpoint 19: ตรวจ OpenAI key
 
@@ -1480,12 +1526,13 @@ true gpt-4.1-mini
 AI เชียงราย 2026
 ```
 
-หากคำตอบยังเป็นข้อความสถิติทั่วไป ให้ตรวจสอบ terminal ว่ามีข้อความ `OpenAI request failed` หรือไม่
+หากคำตอบยังเป็นข้อความสถิติทั่วไปและไม่มี `[ai]` ต่อท้าย ให้ตรวจสอบ terminal ว่ามีข้อความ `OpenAI request failed` หรือไม่
 
 ## แบบฝึกหัดต่อยอด
 
 1. เพิ่มจังหวัดใน `QUICK_PROVINCES`
 2. เปลี่ยนสีปุ่มใน `button(...)`
-3. เปลี่ยน prompt ใน `ai(...)` ให้ตอบสั้นลงหรือเป็น bullet
-4. เพิ่ม field ในกราฟ เช่น ผู้เสียชีวิต แทนจำนวนผู้ป่วย
-5. เพิ่มคำสั่งใหม่ เช่น `อันดับ 10 จังหวัด`
+3. เปลี่ยน prompt ใน `ai(...)` ให้ AI ตอบ 2-3 ประโยค ด้วยโทนอบอุ่น เข้าใจง่าย
+4. เปลี่ยน prompt ใน `ai(...)` ให้ตอบสั้นลงหรือเป็น bullet
+5. เพิ่ม field ในกราฟ เช่น ผู้เสียชีวิต แทนจำนวนผู้ป่วย
+6. เพิ่มคำสั่งใหม่ เช่น `อันดับ 10 จังหวัด`
