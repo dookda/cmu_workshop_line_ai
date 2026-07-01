@@ -57,12 +57,10 @@ flowchart TD
 - Visual Studio Code: https://code.visualstudio.com/download
 - REST Client extension ใน VS Code: https://marketplace.visualstudio.com/items?itemName=humao.rest-client
 - Postman หากไม่ใช้ REST Client: https://www.postman.com/downloads/
-- Insomnia หากไม่ใช้ REST Client: https://insomnia.rest/download
 
 โปรแกรมสำหรับเปิด webhook จากเครื่อง local เพื่อให้ LINE เรียกใช้งานได้:
 
 - ngrok: https://ngrok.com/download
-- Cloudflare Tunnel: https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/
 
 บัญชีที่ต้องมี:
 
