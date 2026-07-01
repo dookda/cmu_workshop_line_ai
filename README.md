@@ -1,8 +1,10 @@
 # LINE OA + AI Health Assistant Workshop
 
-คู่มือนี้อธิบายการรับข้อความจากผู้ใช้ผ่าน LINE Official Account การส่งข้อมูลมายัง server และการใช้ AI เพื่อช่วยอธิบายข้อมูล
+คู่มือนี้อธิบายการรับข้อความจากผู้ใช้ผ่าน LINE Official Account การส่งข้อมูลมายัง server และการใช้ AI เพื่อช่วยอธิบายข้อมูล  
 
-โปรเจกต์นี้ประกอบด้วย 3 feature ให้สอดคล้องกับ Rich Menu ใน `assets/linerichmenu.jpg`
+[เอกสารประกอบ](https://canva.link/19xhyqpp8trfg5c)
+
+โปรเจกต์นี้ประกอบด้วย 3 feature Rich Menu ใน `assets/linerichmenu.jpg`
 
 1. `สรุปข้อมูล` สร้างกราฟจากข้อมูลรายจังหวัด
 2. `กรองข้อมูล` เลือกจังหวัด แล้วเลือกปี
